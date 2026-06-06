@@ -120,7 +120,7 @@ export default function PatientsDashboardPage() {
                     Lancer une analyse
                   </DialogTrigger>
                   ) : (
-                    <Button onClick={() => router.push(`/patients/${patient.id}/bilan`)} variant="outline" className="w-full bg-[var(--status-green)]/10 text-[var(--status-green)] hover:bg-[var(--status-green)]/20 hover:text-[var(--status-green)] border-[var(--status-green)]">
+                    <Button onClick={() => router.push(`/patients/${patient.id}/interview`)} variant="outline" className="w-full bg-[var(--status-green)]/10 text-[var(--status-green)] hover:bg-[var(--status-green)]/20 hover:text-[var(--status-green)] border-[var(--status-green)]">
                       <CheckCircle2 className="w-4 h-4 mr-2" />
                       Questionnaire disponible
                     </Button>
