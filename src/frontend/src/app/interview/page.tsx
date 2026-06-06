@@ -285,10 +285,10 @@ function InterviewContent() {
                     {/* Hypothese 1 */}
                     <div className="border border-[var(--status-orange)]/50 bg-orange-50/30 rounded-lg p-3">
                       <div className="flex justify-between items-center mb-2">
-                        <span className="font-bold text-[var(--ink)] text-sm">Syndrome Fémoro-Patellaire (SFP)</span>
+                        <span className="font-bold text-[var(--ink)] text-sm">Syndrome de l'essuie-glace</span>
                         <span className="bg-[var(--status-orange)] text-white text-[10px] font-bold px-2 py-0.5 rounded">+++ Très probable</span>
                       </div>
-                      <p className="text-xs text-[var(--text-muted)] mb-3">Signes contributifs: Sexe H, Transition chaussures, Douleur rotule &gt; 6km</p>
+                      <p className="text-xs text-[var(--text-muted)] mb-3">Signes contributifs: Sexe H, Transition chaussures, Douleur extérieure du genou &gt; 6km</p>
                       <div className="flex border-t border-orange-200 pt-2 space-x-2">
                         <Button variant="outline" size="sm" className="h-7 text-xs flex-1 text-[var(--status-green)] border-[var(--status-green)] bg-[var(--status-green)]/10 hover:bg-[var(--status-green)] hover:text-white">Valider hypothèse</Button>
                         <Button variant="ghost" size="sm" className="h-7 text-xs flex-1 text-gray-500 hover:text-[var(--status-red)]">Rejeter</Button>
@@ -298,10 +298,10 @@ function InterviewContent() {
                     {/* Hypothese 2 */}
                     <div className="border border-[var(--line)] bg-[var(--paper)] rounded-lg p-3">
                       <div className="flex justify-between items-center mb-2">
-                        <span className="font-bold text-[var(--ink)] text-sm">Tendinopathie rotulienne</span>
+                        <span className="font-bold text-[var(--ink)] text-sm">Fracture de la rotule</span>
                         <span className="bg-gray-400 text-white text-[10px] font-bold px-2 py-0.5 rounded">+ Possible</span>
                       </div>
-                      <p className="text-xs text-[var(--text-muted)] mb-3">Signes contributifs: Appui médio-pied récent</p>
+                      <p className="text-xs text-[var(--text-muted)] mb-3">Signes contributifs: Choc violent récent sur le genou, chute en avant</p>
                       <div className="flex border-t border-gray-200 pt-2 space-x-2">
                         <Button variant="outline" size="sm" className="h-7 text-xs flex-1 border-gray-300 text-gray-600 hover:text-[var(--status-green)] hover:border-[var(--status-green)]">Valider hypothèse</Button>
                         <Button variant="ghost" size="sm" className="h-7 text-xs flex-1 text-gray-500 hover:text-[var(--status-red)] hover:bg-red-50">Rejeter</Button>

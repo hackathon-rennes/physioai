@@ -160,3 +160,11 @@ physioai/
 ├── specs/                 # Spécifications fonctionnelles et design
 └── factory-output/        # Artifacts de planification (ne pas supprimer)
 ```
+
+---
+
+## Démonstration
+
+**PhysioRunningLab — Bilan Patient**
+
+<video src="video/PhysioAI - Bilan Patient.mp4" controls width="100%" onloadedmetadata="this.playbackRate = 2;"></video>
