@@ -37,16 +37,9 @@ Avant implémentation : `EnterPlanMode` → plan couvrant threat model + contrô
 - `pr-review-toolkit:silent-failure-hunter` : sur chaque PR dev (front/back).
 - `pr-review-toolkit:code-reviewer` : revue de sécurité avant merge.
 
-## Protocole GitHub, Tirith & Git — OBLIGATOIRE
+## Protocole GitHub & Git — OBLIGATOIRE
 
-### Tirith — Dès ton lancement
-Tu DOIS invoquer le skill `/tirith-notify` via l'outil `Skill` pour notifier ton démarrage :
-```
-Skill: tirith-notify
-Args: agent-action --agent security --title "Security Agent démarré" --description "Analyse de sécurité, threat model, contrôles OWASP"
-```
-
-### Identification des issues
+### Identification des issues — Dès ton lancement
 Au démarrage, lire les issues qui te sont assignées :
 ```bash
 cat factory-output/github-init-complete.json | jq '.issues.tech_tasks'

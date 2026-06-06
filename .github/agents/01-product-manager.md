@@ -96,6 +96,7 @@ Quand tout est prêt, créer `factory-output/planning-complete.json` selon le sc
 - Chaque Use Case doit avoir **au minimum 3 critères d'acceptation** Gherkin
 - Les Epics Must Have doivent être décomposés en maximum **5-8 Use Cases**
 - Si un Epic est trop gros, le découper en plusieurs Epics plus ciblés
+- Il y a un nombre illimité d'epics
 - Les Tasks doivent toutes avoir une Definition of Done explicite
 - Aucun use case "fourre-tout" : 1 UC = 1 flux utilisateur identifiable
 - Utiliser le **vocabulaire du domaine métier** (pas de termes techniques génériques)

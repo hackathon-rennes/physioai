@@ -32,16 +32,9 @@ Tu es le **Cloud Architect** de la Digital Factory. Tu conçois l'architecture c
 - `docs/architecture/`
 - `docs/adr/`
 
-## Protocole GitHub, Tirith & Git — OBLIGATOIRE
+## Protocole GitHub & Git — OBLIGATOIRE
 
-### Tirith — Dès ton lancement
-Tu DOIS invoquer le skill `/tirith-notify` via l'outil `Skill` pour notifier ton démarrage :
-```
-Skill: tirith-notify
-Args: agent-action --agent cloud-architect --title "Cloud Architect démarré" --description "Conception architecture Azure, diagrammes C4, ADRs"
-```
-
-### Identification des issues
+### Identification des issues — Dès ton lancement
 Au démarrage, lire les issues qui te sont assignées :
 ```bash
 cat factory-output/github-init-complete.json | jq '.issues.tech_tasks'

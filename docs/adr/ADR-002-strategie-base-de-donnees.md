@@ -1,14 +1,16 @@
-﻿# ADR 002 : Base de données évolutive (SQLite vers PostgreSQL)
+﻿# ADR 002: Stratégie de Base de Données
 
-**Statut :** Accepté
-**Date :** 2026-06-06
+## Statut
+Accepté
 
 ## Contexte
-Nous devons lancer un MVP rapidement à moindre coût, mais l'application gérera des données de santé (nécessitant une conformité HDS en production).
+PhysioAI manipule des données de santé personnelles (DSP). Ces données requièrent un chiffrement au repos et en transit, une traçabilité totale (audit logs) et une haute disponibilité.
 
 ## Décision
-Nous utiliserons **SQLite** pour la phase de développement et le MVP initial (hébergement sur une seule instance), et nous migrerons vers **PostgreSQL** géré (ex: Azure Database for PostgreSQL) pour l'environnement de production HDS. Un ORM agnostique (comme Prisma ou TypeORM) sera utilisé.
+- **Base de données relationnelle** : Azure Database for PostgreSQL - Flexible Server (Zone Redundant).
+- **ORM** : Prisma.
+- **Réseau** : Déploiement dans un subnet privé via Azure Private Link (aucun accès public).
 
 ## Conséquences
-- **Avantages** : Démarrage très rapide et coût zéro pour le MVP. Transition fluide vers la prod si l'ORM gère correctement les dialectes.
-- **Inconvénients** : Interdiction d'utiliser des fonctionnalités spécifiques à PostgreSQL (ex: JSONB complexe, PostGIS) dans le MVP sous peine de casser la compatibilité SQLite.
+- **Avantages** : Conformité HDS, backups automatiques 35 jours, chiffrement via Azure Key Vault par défaut. Prisma accélère le développement.
+- **Inconvénients** : Coût d'infrastructure fixe pour l'instance managée.

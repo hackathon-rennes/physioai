@@ -11,7 +11,7 @@
     {
       "name": "epic",
       "color": "6f42c1",
-      "description": "Epic (grande fonctionnalitÃ© mÃ©tier)"
+      "description": "Epic (grande fonctionnalité métier)"
     },
     {
       "name": "use-case",
@@ -21,17 +21,17 @@
     {
       "name": "task",
       "color": "cccccc",
-      "description": "TÃ¢che"
+      "description": "Tâche"
     },
     {
       "name": "must-have",
       "color": "b60205",
-      "description": "PrioritÃ© Must Have (MVP)"
+      "description": "Priorité Must Have (MVP)"
     },
     {
       "name": "should-have",
       "color": "fbca04",
-      "description": "PrioritÃ© Should Have"
+      "description": "Priorité Should Have"
     },
     {
       "name": "backend",
@@ -51,13 +51,13 @@
     {
       "name": "rgpd-hds",
       "color": "ff69b4",
-      "description": "ConformitÃ© RGPD/HDS"
+      "description": "Conformité RGPD/HDS"
     }
   ],
   "issues": {
     "UC-01-01": {
-      "title": "ðŸ“– [UC-01-01] SÃ©lectionner un patient depuis Maia et lancer une analyse",
-      "body": "Epic: EPIC-01\n\nPreconditions:\n- KinÃ© authentifiÃ©\n- Patients Maia disponibles (prochains RDV)\n\nCritÃ¨res d'acceptation:\n- Given un kinÃ© authentifiÃ© on the home page, When he clicks 'Lancer une analyse', Then a patient selector appears with upcoming appointments\n- Given a patient selected, When email and RDV are pre-filled, Then the kinÃ© can edit the email before sending\n- Given an analysis created, When the kinÃ© validates, Then the workflow opens on Step 1",
+      "title": "📖 [UC-01-01] Sélectionner un patient depuis Maia et lancer une analyse",
+      "body": "Epic: EPIC-01\n\nPreconditions:\n- Kiné authentifié\n- Patients Maia disponibles (prochains RDV)\n\nCritères d'acceptation:\n- Given un kiné authentifié on the home page, When he clicks 'Lancer une analyse', Then a patient selector appears with upcoming appointments\n- Given a patient selected, When email and RDV are pre-filled, Then the kiné can edit the email before sending\n- Given an analysis created, When the kiné validates, Then the workflow opens on Step 1",
       "assignee": null,
       "labels": [
         "use-case",
@@ -66,8 +66,8 @@
       ]
     },
     "UC-01-02": {
-      "title": "ðŸ“– [UC-01-02] Envoyer le questionnaire en amont au patient",
-      "body": "Epic: EPIC-01\n\nPreconditions:\n- Analyse crÃ©Ã©e\n- E-mail patient valide\n\nCritÃ¨res d'acceptation:\n- Given an analysis with a valid email, When the kinÃ© sends the questionnaire, Then the email is sent within 5 seconds\n- Given the email sent, When the patient receives it, Then it contains a personalized secure link and the questionnaire form\n- Given the questionnaire link, When the patient opens it, Then the status updates to 'in_progress' on kinÃ©'s side",
+      "title": "📖 [UC-01-02] Envoyer le questionnaire en amont au patient",
+      "body": "Epic: EPIC-01\n\nPreconditions:\n- Analyse créée\n- E-mail patient valide\n\nCritères d'acceptation:\n- Given an analysis with a valid email, When the kiné sends the questionnaire, Then the email is sent within 5 seconds\n- Given the email sent, When the patient receives it, Then it contains a personalized secure link and the questionnaire form\n- Given the questionnaire link, When the patient opens it, Then the status updates to 'in_progress' on kiné's side",
       "assignee": null,
       "labels": [
         "use-case",
@@ -76,8 +76,8 @@
       ]
     },
     "UC-01-03": {
-      "title": "ðŸ“– [UC-01-03] Suivre le statut de complÃ©tion du questionnaire amont",
-      "body": "Epic: EPIC-01\n\nPreconditions:\n- Questionnaire envoyÃ©\n\nCritÃ¨res d'acceptation:\n- Given a questionnaire sent, When the patient opens the link, Then the status updates to 'in_progress' within 10 seconds\n- Given the patient submits the questionnaire, When the kinÃ© refreshes, Then the status is 'completed' and Step 1 is prefilled\n- Given a completed questionnaire, When the kinÃ© opens the analysis, Then Step 1 displays a green banner with 'Questionnaire rempli en amont'",
+      "title": "📖 [UC-01-03] Suivre le statut de complétion du questionnaire amont",
+      "body": "Epic: EPIC-01\n\nPreconditions:\n- Questionnaire envoyé\n\nCritères d'acceptation:\n- Given a questionnaire sent, When the patient opens the link, Then the status updates to 'in_progress' within 10 seconds\n- Given the patient submits the questionnaire, When the kiné refreshes, Then the status is 'completed' and Step 1 is prefilled\n- Given a completed questionnaire, When the kiné opens the analysis, Then Step 1 displays a green banner with 'Questionnaire rempli en amont'",
       "assignee": null,
       "labels": [
         "use-case",
@@ -86,8 +86,8 @@
       ]
     },
     "UC-01-04": {
-      "title": "ðŸ“– [UC-01-04] Visualiser l'aperÃ§u de l'e-mail et du questionnaire patient",
-      "body": "Epic: EPIC-01\n\nPreconditions:\n- Analyse crÃ©Ã©e\n\nCritÃ¨res d'acceptation:\n- Given the email preview, When the kinÃ© reviews it, Then all placeholders are filled (patient name, RDV date, secure link)\n- Given the questionnaire preview, When the kinÃ© clicks on it, Then a modal shows the full 5-block form as the patient will see it\n- Given the preview modal, When the kinÃ© simulates completion, Then he can see what the prefilled Step 1 will look like",
+      "title": "📖 [UC-01-04] Visualiser l'aperçu de l'e-mail et du questionnaire patient",
+      "body": "Epic: EPIC-01\n\nPreconditions:\n- Analyse créée\n\nCritères d'acceptation:\n- Given the email preview, When the kiné reviews it, Then all placeholders are filled (patient name, RDV date, secure link)\n- Given the questionnaire preview, When the kiné clicks on it, Then a modal shows the full 5-block form as the patient will see it\n- Given the preview modal, When the kiné simulates completion, Then he can see what the prefilled Step 1 will look like",
       "assignee": null,
       "labels": [
         "use-case",
@@ -96,8 +96,8 @@
       ]
     },
     "UC-01-05": {
-      "title": "ðŸ“– [UC-01-05] GÃ©rer les erreurs et reprises d'envoi du questionnaire",
-      "body": "Epic: EPIC-01\n\nPreconditions:\n- Envoi questionnaire tentÃ©e ou Ã©chouÃ©e\n\nCritÃ¨res d'acceptation:\n- Given an email send failure, When the kinÃ© retries, Then the system attempts resend with exponential backoff\n- Given a max retry limit exceeded, When the kinÃ© sees the error, Then he can contact support or try again later\n- Given a successful resend, When the status is updated, Then the timeline shows both attempts in the journal",
+      "title": "📖 [UC-01-05] Gérer les erreurs et reprises d'envoi du questionnaire",
+      "body": "Epic: EPIC-01\n\nPreconditions:\n- Envoi questionnaire tentée ou échouée\n\nCritères d'acceptation:\n- Given an email send failure, When the kiné retries, Then the system attempts resend with exponential backoff\n- Given a max retry limit exceeded, When the kiné sees the error, Then he can contact support or try again later\n- Given a successful resend, When the status is updated, Then the timeline shows both attempts in the journal",
       "assignee": null,
       "labels": [
         "use-case",
@@ -106,8 +106,8 @@
       ]
     },
     "UC-02-01": {
-      "title": "ðŸ“– [UC-02-01] Saisir le questionnaire gÃ©nÃ©ral avec 5 blocs et logique conditionnelle",
-      "body": "Epic: EPIC-02\n\nPreconditions:\n- Questionnaire accessible (lien sÃ©curisÃ© ou Ã‰tape 1 ouverte)\n- Formulaire rendu mobile-first\n\nCritÃ¨res d'acceptation:\n- Given a patient on the questionnaire form, When he selects 'Oui' for orthÃ¨ses, Then the fields for duration and reason appear\n- Given injuries selected as 'Oui', When he enters injury details, Then each injury has zone, date, and status\n- Given the patient saves mid-form, When he closes and reopens, Then all data is recovered exactly as saved\n- Given the questionnaire completed, When submitted, Then the data is normalized and ready for Step 2 IA",
+      "title": "📖 [UC-02-01] Saisir le questionnaire général avec 5 blocs et logique conditionnelle",
+      "body": "Epic: EPIC-02\n\nPreconditions:\n- Questionnaire accessible (lien sécurisé ou Étape 1 ouverte)\n- Formulaire rendu mobile-first\n\nCritères d'acceptation:\n- Given a patient on the questionnaire form, When he selects 'Oui' for orthèses, Then the fields for duration and reason appear\n- Given injuries selected as 'Oui', When he enters injury details, Then each injury has zone, date, and status\n- Given the patient saves mid-form, When he closes and reopens, Then all data is recovered exactly as saved\n- Given the questionnaire completed, When submitted, Then the data is normalized and ready for Step 2 IA",
       "assignee": null,
       "labels": [
         "use-case",
@@ -116,8 +116,8 @@
       ]
     },
     "UC-02-02": {
-      "title": "ðŸ“– [UC-02-02] Valider et soumettre le questionnaire (patient amont)",
-      "body": "Epic: EPIC-02\n\nPreconditions:\n- Questionnaire rempli (au moins les champs obligatoires)\n\nCritÃ¨res d'acceptation:\n- Given a completed questionnaire, When the patient submits, Then all mandatory fields are validated\n- Given a submission with missing mandatory field, When the patient sees the validation error, Then the field is highlighted\n- Given a successful submission, When the kinÃ© refreshes, Then the status shows 'ComplÃ©tÃ©' and Step 1 can be opened with prefilled data",
+      "title": "📖 [UC-02-02] Valider et soumettre le questionnaire (patient amont)",
+      "body": "Epic: EPIC-02\n\nPreconditions:\n- Questionnaire rempli (au moins les champs obligatoires)\n\nCritères d'acceptation:\n- Given a completed questionnaire, When the patient submits, Then all mandatory fields are validated\n- Given a submission with missing mandatory field, When the patient sees the validation error, Then the field is highlighted\n- Given a successful submission, When the kiné refreshes, Then the status shows 'Complété' and Step 1 can be opened with prefilled data",
       "assignee": null,
       "labels": [
         "use-case",
@@ -126,8 +126,8 @@
       ]
     },
     "UC-02-03": {
-      "title": "ðŸ“– [UC-02-03] Afficher le questionnaire en version mobile avec responsive",
-      "body": "Epic: EPIC-02\n\nPreconditions:\n- Questionnaire accessible via mobile (lien sÃ©curisÃ©)\n\nCritÃ¨res d'acceptation:\n- Given a mobile viewport (375px), When the questionnaire is loaded, Then all fields are readable and tapable\n- Given conditional fields, When the patient toggles a value, Then the new fields appear/disappear smoothly\n- Given a mobile keyboard, When the patient types, Then the form doesn't jump, scrolls to focus field",
+      "title": "📖 [UC-02-03] Afficher le questionnaire en version mobile avec responsive",
+      "body": "Epic: EPIC-02\n\nPreconditions:\n- Questionnaire accessible via mobile (lien sécurisé)\n\nCritères d'acceptation:\n- Given a mobile viewport (375px), When the questionnaire is loaded, Then all fields are readable and tapable\n- Given conditional fields, When the patient toggles a value, Then the new fields appear/disappear smoothly\n- Given a mobile keyboard, When the patient types, Then the form doesn't jump, scrolls to focus field",
       "assignee": null,
       "labels": [
         "use-case",
@@ -136,8 +136,8 @@
       ]
     },
     "UC-02-04": {
-      "title": "ðŸ“– [UC-02-04] PrÃ©-remplir l'Ã‰tape 1 si questionnaire amont complÃ©tÃ©",
-      "body": "Epic: EPIC-02\n\nPreconditions:\n- Questionnaire amont status = 'completed'\n- Ã‰tape 1 ouverte\n\nCritÃ¨res d'acceptation:\n- Given a completed upstream questionnaire, When the kinÃ© opens Step 1, Then all fields are prefilled\n- Given the prefilled Step 1, When the kinÃ© clicks the Step 1 banner, Then it displays 'Questionnaire rempli en amont'\n- Given prefilled data, When the kinÃ© edits a field, Then the change is tracked (source remains 'patient_amont' but with edits)\n- Given Step 1 completed amont, When the progress ring is checked, Then it shows 1/9 (11%)",
+      "title": "📖 [UC-02-04] Pré-remplir l'Étape 1 si questionnaire amont complété",
+      "body": "Epic: EPIC-02\n\nPreconditions:\n- Questionnaire amont status = 'completed'\n- Étape 1 ouverte\n\nCritères d'acceptation:\n- Given a completed upstream questionnaire, When the kiné opens Step 1, Then all fields are prefilled\n- Given the prefilled Step 1, When the kiné clicks the Step 1 banner, Then it displays 'Questionnaire rempli en amont'\n- Given prefilled data, When the kiné edits a field, Then the change is tracked (source remains 'patient_amont' but with edits)\n- Given Step 1 completed amont, When the progress ring is checked, Then it shows 1/9 (11%)",
       "assignee": null,
       "labels": [
         "use-case",
@@ -146,8 +146,8 @@
       ]
     },
     "UC-03-01": {
-      "title": "ðŸ“– [UC-03-01] GÃ©nÃ©rer le prÃ©-profil IA et les questions complÃ©mentaires",
-      "body": "Epic: EPIC-03\n\nPreconditions:\n- Questionnaire (Ã‰tape 1) suffisamment complet (seuil Ã  dÃ©finir avec kinÃ©)\n- Moteur IA disponible\n\nCritÃ¨res d'acceptation:\n- Given a completed Step 1, When the kinÃ© accesses Step 2, Then the AI profile is generated within 5 seconds\n- Given the suggested questions, When the kinÃ© reviews them, Then each question has a context (justification)\n- Given a suggested question, When the kinÃ© removes it, Then it is crossed out or removed from the list",
+      "title": "📖 [UC-03-01] Générer le pré-profil IA et les questions complémentaires",
+      "body": "Epic: EPIC-03\n\nPreconditions:\n- Questionnaire (Étape 1) suffisamment complet (seuil à définir avec kiné)\n- Moteur IA disponible\n\nCritères d'acceptation:\n- Given a completed Step 1, When the kiné accesses Step 2, Then the AI profile is generated within 5 seconds\n- Given the suggested questions, When the kiné reviews them, Then each question has a context (justification)\n- Given a suggested question, When the kiné removes it, Then it is crossed out or removed from the list",
       "assignee": null,
       "labels": [
         "use-case",
@@ -155,8 +155,8 @@
       ]
     },
     "UC-03-02": {
-      "title": "ðŸ“– [UC-03-02] Ã‰diter, valider et retirer les questions suggÃ©rÃ©es par l'IA",
-      "body": "Epic: EPIC-03\n\nPreconditions:\n- PrÃ©-profil et questions gÃ©nÃ©rÃ©es (UC-03-01)\n\nCritÃ¨res d'acceptation:\n- Given a suggested question, When the kinÃ© clicks 'Edit', Then the text becomes editable\n- Given an edited question, When saved, Then the modified text is used in the interview frame\n- Given a question to remove, When the kinÃ© clicks 'Remove', Then it is no longer part of the interview\n- Given the 'Add question' button, When the kinÃ© adds a custom question, Then it appears in the interview frame",
+      "title": "📖 [UC-03-02] Éditer, valider et retirer les questions suggérées par l'IA",
+      "body": "Epic: EPIC-03\n\nPreconditions:\n- Pré-profil et questions générées (UC-03-01)\n\nCritères d'acceptation:\n- Given a suggested question, When the kiné clicks 'Edit', Then the text becomes editable\n- Given an edited question, When saved, Then the modified text is used in the interview frame\n- Given a question to remove, When the kiné clicks 'Remove', Then it is no longer part of the interview\n- Given the 'Add question' button, When the kiné adds a custom question, Then it appears in the interview frame",
       "assignee": null,
       "labels": [
         "use-case",
@@ -165,8 +165,8 @@
       ]
     },
     "UC-03-03": {
-      "title": "ðŸ“– [UC-03-03] Finaliser et valider la trame d'interview",
-      "body": "Epic: EPIC-03\n\nPreconditions:\n- Questions Ã©ditÃ©es/validÃ©es/retirÃ©es\n\nCritÃ¨res d'acceptation:\n- Given a finalized interview frame, When the kinÃ© validates, Then Step 2 is marked done\n- Given the completed Step 2, When the progress ring is checked, Then it shows 2/9 (22%)\n- Given Step 2 done, When Step 3 opens, Then the interview frame is loaded and ready to use",
+      "title": "📖 [UC-03-03] Finaliser et valider la trame d'interview",
+      "body": "Epic: EPIC-03\n\nPreconditions:\n- Questions éditées/validées/retirées\n\nCritères d'acceptation:\n- Given a finalized interview frame, When the kiné validates, Then Step 2 is marked done\n- Given the completed Step 2, When the progress ring is checked, Then it shows 2/9 (22%)\n- Given Step 2 done, When Step 3 opens, Then the interview frame is loaded and ready to use",
       "assignee": null,
       "labels": [
         "use-case",
@@ -175,8 +175,8 @@
       ]
     },
     "UC-04-01": {
-      "title": "ðŸ“– [UC-04-01] Conduire l'interview assistÃ©e avec prise de notes IA",
-      "body": "Epic: EPIC-04\n\nPreconditions:\n- Trame d'interview finalisÃ©e (Ã‰tape 2)\n- Patient prÃ©sent en consultation\n\nCritÃ¨res d'acceptation:\n- Given an interview session, When the kinÃ© notes the patient's answers, Then the AI offers follow-up suggestions in real-time\n- Given a follow-up suggestion, When the kinÃ© ignores it, Then no error occurs and the interview continues\n- Given the interview completed, When the kinÃ© saves the notes, Then they are timestamped and traceable",
+      "title": "📖 [UC-04-01] Conduire l'interview assistée avec prise de notes IA",
+      "body": "Epic: EPIC-04\n\nPreconditions:\n- Trame d'interview finalisée (Étape 2)\n- Patient présent en consultation\n\nCritères d'acceptation:\n- Given an interview session, When the kiné notes the patient's answers, Then the AI offers follow-up suggestions in real-time\n- Given a follow-up suggestion, When the kiné ignores it, Then no error occurs and the interview continues\n- Given the interview completed, When the kiné saves the notes, Then they are timestamped and traceable",
       "assignee": null,
       "labels": [
         "use-case",
@@ -185,8 +185,8 @@
       ]
     },
     "UC-04-02": {
-      "title": "ðŸ“– [UC-04-02] DÃ©tecter une blessure et dÃ©clencher le diagnostic diffÃ©rentiel",
-      "body": "Epic: EPIC-04\n\nPreconditions:\n- Interview en cours\n- Patient mentionne une blessure/douleur\n\nCritÃ¨res d'acceptation:\n- Given a patient with a knee injury, When the kinÃ© selects the injury zone, Then the corresponding pathology matrix is loaded\n- Given the matrix loaded, When the AI generates hypotheses, Then each hypothesis shows its contributing signs\n- Given the hypotheses, When ranked, Then the most likely is at the top with highest score",
+      "title": "📖 [UC-04-02] Détecter une blessure et déclencher le diagnostic différentiel",
+      "body": "Epic: EPIC-04\n\nPreconditions:\n- Interview en cours\n- Patient mentionne une blessure/douleur\n\nCritères d'acceptation:\n- Given a patient with a knee injury, When the kiné selects the injury zone, Then the corresponding pathology matrix is loaded\n- Given the matrix loaded, When the AI generates hypotheses, Then each hypothesis shows its contributing signs\n- Given the hypotheses, When ranked, Then the most likely is at the top with highest score",
       "assignee": null,
       "labels": [
         "use-case",
@@ -194,8 +194,8 @@
       ]
     },
     "UC-04-03": {
-      "title": "ðŸ“– [UC-04-03] Valider/invalider les hypothÃ¨ses du diagnostic diffÃ©rentiel",
-      "body": "Epic: EPIC-04\n\nPreconditions:\n- Diagnostic diffÃ©rentiel gÃ©nÃ©rÃ© (UC-04-02)\n\nCritÃ¨res d'acceptation:\n- Given a hypothesis with contributing signs, When the kinÃ© reviews it, Then he can validate or reject it with a reason\n- Given a rejected hypothesis, When saved, Then it is marked as rejected (not deleted) for audit trail\n- Given all hypotheses validated, When the kinÃ© proceeds, Then the test protocol is adapted (e.g., specific strength test for hips)",
+      "title": "📖 [UC-04-03] Valider/invalider les hypothèses du diagnostic différentiel",
+      "body": "Epic: EPIC-04\n\nPreconditions:\n- Diagnostic différentiel généré (UC-04-02)\n\nCritères d'acceptation:\n- Given a hypothesis with contributing signs, When the kiné reviews it, Then he can validate or reject it with a reason\n- Given a rejected hypothesis, When saved, Then it is marked as rejected (not deleted) for audit trail\n- Given all hypotheses validated, When the kiné proceeds, Then the test protocol is adapted (e.g., specific strength test for hips)",
       "assignee": null,
       "labels": [
         "use-case",
@@ -204,8 +204,8 @@
       ]
     },
     "UC-04-04": {
-      "title": "ðŸ“– [UC-04-04] Adapter le protocole de tests selon le diagnostic",
-      "body": "Epic: EPIC-04\n\nPreconditions:\n- HypothÃ¨ses validÃ©es\n\nCritÃ¨res d'acceptation:\n- Given a validated diagnosis of hip pathology, When the protocol is displayed, Then hip-specific mobility tests are suggested\n- Given the suggested tests, When the kinÃ© removes or adds tests, Then the protocol is updated\n- Given the adapted protocol, When saved, Then it's applied to Steps 4-7",
+      "title": "📖 [UC-04-04] Adapter le protocole de tests selon le diagnostic",
+      "body": "Epic: EPIC-04\n\nPreconditions:\n- Hypothèses validées\n\nCritères d'acceptation:\n- Given a validated diagnosis of hip pathology, When the protocol is displayed, Then hip-specific mobility tests are suggested\n- Given the suggested tests, When the kiné removes or adds tests, Then the protocol is updated\n- Given the adapted protocol, When saved, Then it's applied to Steps 4-7",
       "assignee": null,
       "labels": [
         "use-case",
@@ -214,8 +214,8 @@
       ]
     },
     "UC-05-01": {
-      "title": "ðŸ“– [UC-05-01] Importer un fichier de test de force (VALD, Ã‰tape 4)",
-      "body": "Epic: EPIC-05\n\nPreconditions:\n- Diagnostic validÃ© (Ã‰tape 3)\n- Fichier VALD disponible (CSV/FIT)\n\nCritÃ¨res d'acceptation:\n- Given a VALD CSV file with columns Right/Left/Norm, When uploaded, Then the system parses and displays the metrics within 3 seconds\n- Given the metrics displayed, When the kinÃ© checks asymmetry, Then it shows delta % and flag (ok/warn/bad)\n- Given a malformed file, When uploaded, Then an error message appears without overwriting existing data",
+      "title": "📖 [UC-05-01] Importer un fichier de test de force (VALD, Étape 4)",
+      "body": "Epic: EPIC-05\n\nPreconditions:\n- Diagnostic validé (Étape 3)\n- Fichier VALD disponible (CSV/FIT)\n\nCritères d'acceptation:\n- Given a VALD CSV file with columns Right/Left/Norm, When uploaded, Then the system parses and displays the metrics within 3 seconds\n- Given the metrics displayed, When the kiné checks asymmetry, Then it shows delta % and flag (ok/warn/bad)\n- Given a malformed file, When uploaded, Then an error message appears without overwriting existing data",
       "assignee": null,
       "labels": [
         "use-case",
@@ -224,8 +224,8 @@
       ]
     },
     "UC-05-02": {
-      "title": "ðŸ“– [UC-05-02] Importer un fichier de test de mobilitÃ© (VALD, Ã‰tape 5)",
-      "body": "Epic: EPIC-05\n\nPreconditions:\n- Fichier VALD mobilitÃ© (ForceFrame/HumanTrak) disponible\n\nCritÃ¨res d'acceptation:\n- Given a VALD mobility file, When uploaded, Then amplitude values (dorsiflexion, hip extension, etc.) are displayed\n- Given the mobility data, When asymmetry is calculated, Then it's compared to norms and flagged",
+      "title": "📖 [UC-05-02] Importer un fichier de test de mobilité (VALD, Étape 5)",
+      "body": "Epic: EPIC-05\n\nPreconditions:\n- Fichier VALD mobilité (ForceFrame/HumanTrak) disponible\n\nCritères d'acceptation:\n- Given a VALD mobility file, When uploaded, Then amplitude values (dorsiflexion, hip extension, etc.) are displayed\n- Given the mobility data, When asymmetry is calculated, Then it's compared to norms and flagged",
       "assignee": null,
       "labels": [
         "use-case",
@@ -234,8 +234,8 @@
       ]
     },
     "UC-05-03": {
-      "title": "ðŸ“– [UC-05-03] Importer un fichier de test fonctionnel (Vitruve, Ã‰tape 6)",
-      "body": "Epic: EPIC-05\n\nPreconditions:\n- Fichier Vitruve (sauts, puissance) disponible\n\nCritÃ¨res d'acceptation:\n- Given a Vitruve CSV file, When uploaded, Then CMJ height, LSI, and power metrics are extracted and displayed",
+      "title": "📖 [UC-05-03] Importer un fichier de test fonctionnel (Vitruve, Étape 6)",
+      "body": "Epic: EPIC-05\n\nPreconditions:\n- Fichier Vitruve (sauts, puissance) disponible\n\nCritères d'acceptation:\n- Given a Vitruve CSV file, When uploaded, Then CMJ height, LSI, and power metrics are extracted and displayed",
       "assignee": null,
       "labels": [
         "use-case",
@@ -244,8 +244,8 @@
       ]
     },
     "UC-05-04": {
-      "title": "ðŸ“– [UC-05-04] Importer un fichier de donnÃ©es tapis (Stryd, Ã‰tape 7)",
-      "body": "Epic: EPIC-05\n\nPreconditions:\n- Fichier Stryd FIT/CSV disponible\n\nCritÃ¨res d'acceptation:\n- Given a Stryd FIT file, When uploaded, Then power, cadence, GCT, vertical oscillation, LSS are extracted\n- Given the Stryd data, When the kinÃ© reviews it, Then he can see running signature metrics (avg power, cadence, etc.)",
+      "title": "📖 [UC-05-04] Importer un fichier de données tapis (Stryd, Étape 7)",
+      "body": "Epic: EPIC-05\n\nPreconditions:\n- Fichier Stryd FIT/CSV disponible\n\nCritères d'acceptation:\n- Given a Stryd FIT file, When uploaded, Then power, cadence, GCT, vertical oscillation, LSS are extracted\n- Given the Stryd data, When the kiné reviews it, Then he can see running signature metrics (avg power, cadence, etc.)",
       "assignee": null,
       "labels": [
         "use-case",
@@ -254,8 +254,8 @@
       ]
     },
     "UC-05-05": {
-      "title": "ðŸ“– [UC-05-05] GÃ©rer les erreurs et les asymÃ©tries dans les imports",
-      "body": "Epic: EPIC-05\n\nPreconditions:\n- Import en cours ou Ã©chouÃ©\n\nCritÃ¨res d'acceptation:\n- Given a malformed file, When uploaded, Then the error message is specific (e.g., 'Missing column: Right')\n- Given an asymmetry >15%, When displayed, Then it's flagged in red (bad)\n- Given a file import error, When the kinÃ© retries, Then the system doesn't duplicate data",
+      "title": "📖 [UC-05-05] Gérer les erreurs et les asymétries dans les imports",
+      "body": "Epic: EPIC-05\n\nPreconditions:\n- Import en cours ou échoué\n\nCritères d'acceptation:\n- Given a malformed file, When uploaded, Then the error message is specific (e.g., 'Missing column: Right')\n- Given an asymmetry >15%, When displayed, Then it's flagged in red (bad)\n- Given a file import error, When the kiné retries, Then the system doesn't duplicate data",
       "assignee": null,
       "labels": [
         "use-case",
@@ -264,8 +264,8 @@
       ]
     },
     "UC-06-01": {
-      "title": "ðŸ“– [UC-06-01] Visionner la vidÃ©o et accÃ©der Ã  la grille d'observation",
-      "body": "Epic: EPIC-06\n\nPreconditions:\n- VidÃ©o uploadÃ©e (Ã©tape 7)\n- DonnÃ©es Stryd disponibles\n\nCritÃ¨res d'acceptation:\n- Given a video loaded, When the kinÃ© plays it, Then synchronization with Stryd data (cadence overlay optional)\n- Given the observation grid, When the kinÃ© selects a view (frontal/sagittal), Then the grid items are appropriate for that view\n- Given a time marker, When the kinÃ© adds it, Then it's linked to the video timecode",
+      "title": "📖 [UC-06-01] Visionner la vidéo et accéder à la grille d'observation",
+      "body": "Epic: EPIC-06\n\nPreconditions:\n- Vidéo uploadée (étape 7)\n- Données Stryd disponibles\n\nCritères d'acceptation:\n- Given a video loaded, When the kiné plays it, Then synchronization with Stryd data (cadence overlay optional)\n- Given the observation grid, When the kiné selects a view (frontal/sagittal), Then the grid items are appropriate for that view\n- Given a time marker, When the kiné adds it, Then it's linked to the video timecode",
       "assignee": null,
       "labels": [
         "use-case",
@@ -274,8 +274,8 @@
       ]
     },
     "UC-06-02": {
-      "title": "ðŸ“– [UC-06-02] Remplir la grille d'observation (10 items, D/G, scoring)",
-      "body": "Epic: EPIC-06\n\nPreconditions:\n- VidÃ©o visionnÃ©e, grille accessible\n\nCritÃ¨res d'acceptation:\n- Given the observation grid, When the kinÃ© scores each item as green/orange/red, Then the score is saved\n- Given a lateralized item (e.g., knee flexion), When the kinÃ© selects Right, Then he scores right side; repeating for Left\n- Given all items scored, When the kinÃ© saves, Then all data is timestamped and ready for the report",
+      "title": "📖 [UC-06-02] Remplir la grille d'observation (10 items, D/G, scoring)",
+      "body": "Epic: EPIC-06\n\nPreconditions:\n- Vidéo visionnée, grille accessible\n\nCritères d'acceptation:\n- Given the observation grid, When the kiné scores each item as green/orange/red, Then the score is saved\n- Given a lateralized item (e.g., knee flexion), When the kiné selects Right, Then he scores right side; repeating for Left\n- Given all items scored, When the kiné saves, Then all data is timestamped and ready for the report",
       "assignee": null,
       "labels": [
         "use-case",
@@ -284,8 +284,8 @@
       ]
     },
     "UC-06-03": {
-      "title": "ðŸ“– [UC-06-03] SynthÃ©tiser les observations et finaliser l'Ã‰tape 8",
-      "body": "Epic: EPIC-06\n\nPreconditions:\n- Grille remplie\n\nCritÃ¨res d'acceptation:\n- Given a filled grid, When the kinÃ© writes a summary, Then it captures the global running pattern\n- Given notable asymmetries, When listed, Then they're flagged for the report priority section\n- Given Step 8 validated, When the progress ring updates, Then it shows 8/9 (89%)",
+      "title": "📖 [UC-06-03] Synthétiser les observations et finaliser l'Étape 8",
+      "body": "Epic: EPIC-06\n\nPreconditions:\n- Grille remplie\n\nCritères d'acceptation:\n- Given a filled grid, When the kiné writes a summary, Then it captures the global running pattern\n- Given notable asymmetries, When listed, Then they're flagged for the report priority section\n- Given Step 8 validated, When the progress ring updates, Then it shows 8/9 (89%)",
       "assignee": null,
       "labels": [
         "use-case",
@@ -294,8 +294,8 @@
       ]
     },
     "UC-07-01": {
-      "title": "ðŸ“– [UC-07-01] GÃ©nÃ©rer les deux versions du bilan (patient/expert)",
-      "body": "Epic: EPIC-07\n\nPreconditions:\n- Toutes les Ã©tapes 1-8 complÃ©tÃ©es ou suffisantes\n- Moteur IA disponible\n\nCritÃ¨res d'acceptation:\n- Given all steps completed, When the kinÃ© opens Step 9, Then both report versions are generated within 10 seconds\n- Given the patient report, When displayed, Then key message is prominent, gauges show asymmetries, and action plan is clear\n- Given the expert report, When displayed, Then raw metrics, graphs, and technical justifications are visible",
+      "title": "📖 [UC-07-01] Générer les deux versions du bilan (patient/expert)",
+      "body": "Epic: EPIC-07\n\nPreconditions:\n- Toutes les étapes 1-8 complétées ou suffisantes\n- Moteur IA disponible\n\nCritères d'acceptation:\n- Given all steps completed, When the kiné opens Step 9, Then both report versions are generated within 10 seconds\n- Given the patient report, When displayed, Then key message is prominent, gauges show asymmetries, and action plan is clear\n- Given the expert report, When displayed, Then raw metrics, graphs, and technical justifications are visible",
       "assignee": null,
       "labels": [
         "use-case",
@@ -303,8 +303,8 @@
       ]
     },
     "UC-07-02": {
-      "title": "ðŸ“– [UC-07-02] Ã‰diter et valider les bilans avant publication",
-      "body": "Epic: EPIC-07\n\nPreconditions:\n- Bilans gÃ©nÃ©rÃ©s\n\nCritÃ¨res d'acceptation:\n- Given an editable report section, When the kinÃ© modifies text, Then the change is saved as draft\n- Given the report key message, When the kinÃ© edits it, Then the tone remains appropriate for the target audience\n- Given all edits complete, When validation button is clicked, Then status updates to 'validated'",
+      "title": "📖 [UC-07-02] Éditer et valider les bilans avant publication",
+      "body": "Epic: EPIC-07\n\nPreconditions:\n- Bilans générés\n\nCritères d'acceptation:\n- Given an editable report section, When the kiné modifies text, Then the change is saved as draft\n- Given the report key message, When the kiné edits it, Then the tone remains appropriate for the target audience\n- Given all edits complete, When validation button is clicked, Then status updates to 'validated'",
       "assignee": null,
       "labels": [
         "use-case",
@@ -313,8 +313,8 @@
       ]
     },
     "UC-07-03": {
-      "title": "ðŸ“– [UC-07-03] Exporter et publier le bilan en PDF",
-      "body": "Epic: EPIC-07\n\nPreconditions:\n- Bilan validÃ©\n\nCritÃ¨res d'acceptation:\n- Given a validated report, When export PDF is triggered, Then a PDF file is generated within 5 seconds\n- Given the PDF, When opened, Then formatting, images, and colors are preserved\n- Given publication, When the patient receives notification, Then the link provides access to the synthetic version only",
+      "title": "📖 [UC-07-03] Exporter et publier le bilan en PDF",
+      "body": "Epic: EPIC-07\n\nPreconditions:\n- Bilan validé\n\nCritères d'acceptation:\n- Given a validated report, When export PDF is triggered, Then a PDF file is generated within 5 seconds\n- Given the PDF, When opened, Then formatting, images, and colors are preserved\n- Given publication, When the patient receives notification, Then the link provides access to the synthetic version only",
       "assignee": null,
       "labels": [
         "use-case",
@@ -323,8 +323,8 @@
       ]
     },
     "UC-07-04": {
-      "title": "ðŸ“– [UC-07-04] Tracer les versions du bilan et l'historique d'Ã©dition",
-      "body": "Epic: EPIC-07\n\nPreconditions:\n- Bilan gÃ©nÃ©rÃ© et Ã©ditÃ©\n\nCritÃ¨res d'acceptation:\n- Given a report generated and edited, When the version history is viewed, Then all versions are listed with timestamps\n- Given a previous version, When selected, Then the kinÃ© can see what changed",
+      "title": "📖 [UC-07-04] Tracer les versions du bilan et l'historique d'édition",
+      "body": "Epic: EPIC-07\n\nPreconditions:\n- Bilan généré et édité\n\nCritères d'acceptation:\n- Given a report generated and edited, When the version history is viewed, Then all versions are listed with timestamps\n- Given a previous version, When selected, Then the kiné can see what changed",
       "assignee": null,
       "labels": [
         "use-case",
@@ -333,8 +333,8 @@
       ]
     },
     "UC-08-01": {
-      "title": "ðŸ“– [UC-08-01] CrÃ©er et consulter le dossier patient unique",
-      "body": "Epic: EPIC-08\n\nPreconditions:\n- Patient crÃ©Ã©\n\nCritÃ¨res d'acceptation:\n- Given a patient folder open, When the kinÃ© views the sidebar, Then all patient info and current step are visible\n- Given Step 3 done and Step 5 pending, When the stepper is viewed, Then Step 3 is marked done, Step 5 is not yet active\n- Given a skipped step, When the stepper is checked, Then it's visually distinct from pending/active/done",
+      "title": "📖 [UC-08-01] Créer et consulter le dossier patient unique",
+      "body": "Epic: EPIC-08\n\nPreconditions:\n- Patient créé\n\nCritères d'acceptation:\n- Given a patient folder open, When the kiné views the sidebar, Then all patient info and current step are visible\n- Given Step 3 done and Step 5 pending, When the stepper is viewed, Then Step 3 is marked done, Step 5 is not yet active\n- Given a skipped step, When the stepper is checked, Then it's visually distinct from pending/active/done",
       "assignee": null,
       "labels": [
         "use-case",
@@ -343,8 +343,8 @@
       ]
     },
     "UC-08-02": {
-      "title": "ðŸ“– [UC-08-02] Naviguer entre Ã©tapes (non-linÃ©aire) et modifier le statut d'avancement",
-      "body": "Epic: EPIC-08\n\nPreconditions:\n- Dossier patient ouvert\n\nCritÃ¨res d'acceptation:\n- Given Step 3 done, When the kinÃ© clicks on Step 5, Then Step 5 opens (not Step 4)\n- Given an earlier step modified, When saved, Then the progress ring updates accordingly\n- Given Step 6 skipped, When the kinÃ© completes Step 5, Then progression jumps to Step 7 (if next unaccessed step)",
+      "title": "📖 [UC-08-02] Naviguer entre étapes (non-linéaire) et modifier le statut d'avancement",
+      "body": "Epic: EPIC-08\n\nPreconditions:\n- Dossier patient ouvert\n\nCritères d'acceptation:\n- Given Step 3 done, When the kiné clicks on Step 5, Then Step 5 opens (not Step 4)\n- Given an earlier step modified, When saved, Then the progress ring updates accordingly\n- Given Step 6 skipped, When the kiné completes Step 5, Then progression jumps to Step 7 (if next unaccessed step)",
       "assignee": null,
       "labels": [
         "use-case",
@@ -353,8 +353,8 @@
       ]
     },
     "UC-08-03": {
-      "title": "ðŸ“– [UC-08-03] Afficher l'anneau de progression et le stepper interactif",
-      "body": "Epic: EPIC-08\n\nPreconditions:\n- Dossier patient ouvert\n\nCritÃ¨res d'acceptation:\n- Given 3 steps completed, When the progress ring is checked, Then it shows 3/9 (33%) with 1/3 fill\n- Given a step clicked on stepper, When the panel opens, Then the ring and stepper sync",
+      "title": "📖 [UC-08-03] Afficher l'anneau de progression et le stepper interactif",
+      "body": "Epic: EPIC-08\n\nPreconditions:\n- Dossier patient ouvert\n\nCritères d'acceptation:\n- Given 3 steps completed, When the progress ring is checked, Then it shows 3/9 (33%) with 1/3 fill\n- Given a step clicked on stepper, When the panel opens, Then the ring and stepper sync",
       "assignee": null,
       "labels": [
         "use-case",
@@ -363,8 +363,8 @@
       ]
     },
     "UC-09-01": {
-      "title": "ðŸ“– [UC-09-01] Recueillir et valider le consentement patient (RGPD)",
-      "body": "Epic: EPIC-09\n\nPreconditions:\n- Patient crÃ©e/accÃ¨de Ã  l'application\n\nCritÃ¨res d'acceptation:\n- Given a patient accessing the platform for the first time, When the consent modal appears, Then it's clear and unambiguous\n- Given consent accepted, When the patient proceeds, Then data is stored (no data processed before consent)\n- Given consent denied, When the patient closes the modal, Then no analysis can proceed",
+      "title": "📖 [UC-09-01] Recueillir et valider le consentement patient (RGPD)",
+      "body": "Epic: EPIC-09\n\nPreconditions:\n- Patient crée/accède à l'application\n\nCritères d'acceptation:\n- Given a patient accessing the platform for the first time, When the consent modal appears, Then it's clear and unambiguous\n- Given consent accepted, When the patient proceeds, Then data is stored (no data processed before consent)\n- Given consent denied, When the patient closes the modal, Then no analysis can proceed",
       "assignee": null,
       "labels": [
         "use-case",
@@ -373,8 +373,8 @@
       ]
     },
     "UC-09-02": {
-      "title": "ðŸ“– [UC-09-02] Journaliser toutes les actions et dÃ©cisions cliniques",
-      "body": "Epic: EPIC-09\n\nPreconditions:\n- Analyse en cours\n\nCritÃ¨res d'acceptation:\n- Given a kinÃ© validates a hypothesis, When the action is logged, Then the journal shows 'kinÃ© X validated hypothesis Y at [timestamp]'\n- Given a file imported, When the journal is checked, Then filename, upload time, and parsed metrics are recorded",
+      "title": "📖 [UC-09-02] Journaliser toutes les actions et décisions cliniques",
+      "body": "Epic: EPIC-09\n\nPreconditions:\n- Analyse en cours\n\nCritères d'acceptation:\n- Given a kiné validates a hypothesis, When the action is logged, Then the journal shows 'kiné X validated hypothesis Y at [timestamp]'\n- Given a file imported, When the journal is checked, Then filename, upload time, and parsed metrics are recorded",
       "assignee": null,
       "labels": [
         "use-case",
@@ -383,8 +383,8 @@
       ]
     },
     "UC-09-03": {
-      "title": "ðŸ“– [UC-09-03] ImplÃ©menter le chiffrement des donnÃ©es (transit + repos)",
-      "body": "Epic: EPIC-09\n\nPreconditions:\n- HÃ©bergeur HDS contractualisÃ©\n\nCritÃ¨res d'acceptation:\n- Given a data transmission, When encrypted, Then TLS is enforced (no plaintext HTTP)\n- Given data at rest, When checked, Then encryption is confirmed (not readable without key)",
+      "title": "📖 [UC-09-03] Implémenter le chiffrement des données (transit + repos)",
+      "body": "Epic: EPIC-09\n\nPreconditions:\n- Hébergeur HDS contractualisé\n\nCritères d'acceptation:\n- Given a data transmission, When encrypted, Then TLS is enforced (no plaintext HTTP)\n- Given data at rest, When checked, Then encryption is confirmed (not readable without key)",
       "assignee": null,
       "labels": [
         "use-case",
@@ -392,8 +392,8 @@
       ]
     },
     "UC-09-04": {
-      "title": "ðŸ“– [UC-09-04] GÃ©rer les droits RGPD (accÃ¨s, rectification, effacement, portabilitÃ©)",
-      "body": "Epic: EPIC-09\n\nPreconditions:\n- Patient demande son droit\n\nCritÃ¨res d'acceptation:\n- Given an access request, When the system processes it, Then all patient data is exported within 30 days\n- Given a rectification, When a field is updated, Then the change is logged and previous version archived\n- Given a deletion request, When processed, Then identifiable data is removed (retention policy applied)",
+      "title": "📖 [UC-09-04] Gérer les droits RGPD (accès, rectification, effacement, portabilité)",
+      "body": "Epic: EPIC-09\n\nPreconditions:\n- Patient demande son droit\n\nCritères d'acceptation:\n- Given an access request, When the system processes it, Then all patient data is exported within 30 days\n- Given a rectification, When a field is updated, Then the change is logged and previous version archived\n- Given a deletion request, When processed, Then identifiable data is removed (retention policy applied)",
       "assignee": null,
       "labels": [
         "use-case",
@@ -402,8 +402,8 @@
       ]
     },
     "UC-10-01": {
-      "title": "ðŸ“– [UC-10-01] Concevoir l'architecture technique (stack, routeur, state)",
-      "body": "Epic: EPIC-10\n\nPreconditions:\n- SpÃ©cification fonctionnelle validÃ©e\n\nCritÃ¨res d'acceptation:\n- Given the tech stack chosen, When documentation is reviewed, Then all layers (UI, state, API, DB) are clear",
+      "title": "📖 [UC-10-01] Concevoir l'architecture technique (stack, routeur, state)",
+      "body": "Epic: EPIC-10\n\nPreconditions:\n- Spécification fonctionnelle validée\n\nCritères d'acceptation:\n- Given the tech stack chosen, When documentation is reviewed, Then all layers (UI, state, API, DB) are clear",
       "assignee": null,
       "labels": [
         "use-case",
@@ -411,8 +411,8 @@
       ]
     },
     "UC-10-02": {
-      "title": "ðŸ“– [UC-10-02] ImplÃ©menter le design system et composants rÃ©utilisables",
-      "body": "Epic: EPIC-10\n\nPreconditions:\n- Design system spec validÃ© (02-design-system.md)\n\nCritÃ¨res d'acceptation:\n- Given the design tokens, When a component is built, Then all visual properties match the spec\n- Given a Storybook, When a story is viewed, Then component variants are documented",
+      "title": "📖 [UC-10-02] Implémenter le design system et composants réutilisables",
+      "body": "Epic: EPIC-10\n\nPreconditions:\n- Design system spec validé (02-design-system.md)\n\nCritères d'acceptation:\n- Given the design tokens, When a component is built, Then all visual properties match the spec\n- Given a Storybook, When a story is viewed, Then component variants are documented",
       "assignee": null,
       "labels": [
         "use-case",
@@ -420,8 +420,8 @@
       ]
     },
     "UC-10-03": {
-      "title": "ðŸ“– [UC-10-03] Planifier les intÃ©grations externes (Maia, e-mail, IA, capteurs)",
-      "body": "Epic: EPIC-10\n\nPreconditions:\n- Architecture core dÃ©finie\n\nCritÃ¨res d'acceptation:\n- Given external integrations, When planned, Then MVP scope is clear (file import) and V2 APIs are identified",
+      "title": "📖 [UC-10-03] Planifier les intégrations externes (Maia, e-mail, IA, capteurs)",
+      "body": "Epic: EPIC-10\n\nPreconditions:\n- Architecture core définie\n\nCritères d'acceptation:\n- Given external integrations, When planned, Then MVP scope is clear (file import) and V2 APIs are identified",
       "assignee": null,
       "labels": [
         "use-case",
@@ -433,7 +433,7 @@
   "initial_branches": [
     {
       "task_id": "TASK-01-01-01",
-      "branch": "feature/UC-01-01-api-endpoint-:-get--maia-patients-(rÃ©cup"
+      "branch": "feature/UC-01-01-api-endpoint-:-get--maia-patients-(récup"
     },
     {
       "task_id": "TASK-01-01-02",
@@ -441,7 +441,7 @@
     },
     {
       "task_id": "TASK-01-02-01",
-      "branch": "feature/UC-01-01-api-endpoint-:-post--analyses-(crÃ©er-une"
+      "branch": "feature/UC-01-01-api-endpoint-:-post--analyses-(créer-une"
     },
     {
       "task_id": "TASK-01-03-01",
@@ -457,7 +457,7 @@
     },
     {
       "task_id": "TASK-02-01-01",
-      "branch": "feature/UC-02-01-modÃ¨le-de-donnÃ©es-&-schÃ©ma-db-:-question"
+      "branch": "feature/UC-02-01-modèle-de-données-&-schéma-db-:-question"
     },
     {
       "task_id": "TASK-02-01-02",
@@ -465,8 +465,8 @@
     }
   ],
   "pr_template": {
-    "title": "PR: <type>/<rÃ©fÃ©rence> - Court rÃ©sumÃ©",
-    "body": "RÃ©sumÃ©:\n- Quel est le changement principal ?\n\nContexte / problÃ¨me:\n- Pourquoi ce changement est-il nÃ©cessaire ?\n\nSolution proposÃ©e:\n- Description concise de l'implÃ©mentation.\n\nChecklist (obligatoire):\n- [ ] J'ai liÃ© cette PR Ã  l'issue correspondante (ex: #UC-002)\n- [ ] Les tests unitaires associÃ©s sont ajoutÃ©s/retournent OK\n- [ ] La CI passe localement et sur la PR\n- [ ] J'ai ajoutÃ© la documentation nÃ©cessaire (`docs/` ou commentaires)\n- [ ] J'ai demandÃ© une revue (assigner au relecteur)\n        ",
+    "title": "PR: <type>/<référence> - Court résumé",
+    "body": "Résumé:\n- Quel est le changement principal ?\n\nContexte / problème:\n- Pourquoi ce changement est-il nécessaire ?\n\nSolution proposée:\n- Description concise de l'implémentation.\n\nChecklist (obligatoire):\n- [ ] J'ai lié cette PR à l'issue correspondante (ex: #UC-002)\n- [ ] Les tests unitaires associés sont ajoutés/retournent OK\n- [ ] La CI passe localement et sur la PR\n- [ ] J'ai ajouté la documentation nécessaire (`docs/` ou commentaires)\n- [ ] J'ai demandé une revue (assigner au relecteur)\n        ",
     "checklist_items": [
       "Lien vers l'issue",
       "Tests unitaires",
@@ -476,49 +476,47 @@
     ]
   },
   "useCaseToIssue": {
-    "UC-01-01": "ðŸ“– [UC-01-01] SÃ©lectionner un patient depuis Maia et lancer une analyse",
-    "UC-01-02": "ðŸ“– [UC-01-02] Envoyer le questionnaire en amont au patient",
-    "UC-01-03": "ðŸ“– [UC-01-03] Suivre le statut de complÃ©tion du questionnaire amont",
-    "UC-01-04": "ðŸ“– [UC-01-04] Visualiser l'aperÃ§u de l'e-mail et du questionnaire patient",
-    "UC-01-05": "ðŸ“– [UC-01-05] GÃ©rer les erreurs et reprises d'envoi du questionnaire",
-    "UC-02-01": "ðŸ“– [UC-02-01] Saisir le questionnaire gÃ©nÃ©ral avec 5 blocs et logique conditionnelle",
-    "UC-02-02": "ðŸ“– [UC-02-02] Valider et soumettre le questionnaire (patient amont)",
-    "UC-02-03": "ðŸ“– [UC-02-03] Afficher le questionnaire en version mobile avec responsive",
-    "UC-02-04": "ðŸ“– [UC-02-04] PrÃ©-remplir l'Ã‰tape 1 si questionnaire amont complÃ©tÃ©",
-    "UC-03-01": "ðŸ“– [UC-03-01] GÃ©nÃ©rer le prÃ©-profil IA et les questions complÃ©mentaires",
-    "UC-03-02": "ðŸ“– [UC-03-02] Ã‰diter, valider et retirer les questions suggÃ©rÃ©es par l'IA",
-    "UC-03-03": "ðŸ“– [UC-03-03] Finaliser et valider la trame d'interview",
-    "UC-04-01": "ðŸ“– [UC-04-01] Conduire l'interview assistÃ©e avec prise de notes IA",
-    "UC-04-02": "ðŸ“– [UC-04-02] DÃ©tecter une blessure et dÃ©clencher le diagnostic diffÃ©rentiel",
-    "UC-04-03": "ðŸ“– [UC-04-03] Valider/invalider les hypothÃ¨ses du diagnostic diffÃ©rentiel",
-    "UC-04-04": "ðŸ“– [UC-04-04] Adapter le protocole de tests selon le diagnostic",
-    "UC-05-01": "ðŸ“– [UC-05-01] Importer un fichier de test de force (VALD, Ã‰tape 4)",
-    "UC-05-02": "ðŸ“– [UC-05-02] Importer un fichier de test de mobilitÃ© (VALD, Ã‰tape 5)",
-    "UC-05-03": "ðŸ“– [UC-05-03] Importer un fichier de test fonctionnel (Vitruve, Ã‰tape 6)",
-    "UC-05-04": "ðŸ“– [UC-05-04] Importer un fichier de donnÃ©es tapis (Stryd, Ã‰tape 7)",
-    "UC-05-05": "ðŸ“– [UC-05-05] GÃ©rer les erreurs et les asymÃ©tries dans les imports",
-    "UC-06-01": "ðŸ“– [UC-06-01] Visionner la vidÃ©o et accÃ©der Ã  la grille d'observation",
-    "UC-06-02": "ðŸ“– [UC-06-02] Remplir la grille d'observation (10 items, D/G, scoring)",
-    "UC-06-03": "ðŸ“– [UC-06-03] SynthÃ©tiser les observations et finaliser l'Ã‰tape 8",
-    "UC-07-01": "ðŸ“– [UC-07-01] GÃ©nÃ©rer les deux versions du bilan (patient/expert)",
-    "UC-07-02": "ðŸ“– [UC-07-02] Ã‰diter et valider les bilans avant publication",
-    "UC-07-03": "ðŸ“– [UC-07-03] Exporter et publier le bilan en PDF",
-    "UC-07-04": "ðŸ“– [UC-07-04] Tracer les versions du bilan et l'historique d'Ã©dition",
-    "UC-08-01": "ðŸ“– [UC-08-01] CrÃ©er et consulter le dossier patient unique",
-    "UC-08-02": "ðŸ“– [UC-08-02] Naviguer entre Ã©tapes (non-linÃ©aire) et modifier le statut d'avancement",
-    "UC-08-03": "ðŸ“– [UC-08-03] Afficher l'anneau de progression et le stepper interactif",
-    "UC-09-01": "ðŸ“– [UC-09-01] Recueillir et valider le consentement patient (RGPD)",
-    "UC-09-02": "ðŸ“– [UC-09-02] Journaliser toutes les actions et dÃ©cisions cliniques",
-    "UC-09-03": "ðŸ“– [UC-09-03] ImplÃ©menter le chiffrement des donnÃ©es (transit + repos)",
-    "UC-09-04": "ðŸ“– [UC-09-04] GÃ©rer les droits RGPD (accÃ¨s, rectification, effacement, portabilitÃ©)",
-    "UC-10-01": "ðŸ“– [UC-10-01] Concevoir l'architecture technique (stack, routeur, state)",
-    "UC-10-02": "ðŸ“– [UC-10-02] ImplÃ©menter le design system et composants rÃ©utilisables",
-    "UC-10-03": "ðŸ“– [UC-10-03] Planifier les intÃ©grations externes (Maia, e-mail, IA, capteurs)"
+    "UC-01-01": "📖 [UC-01-01] Sélectionner un patient depuis Maia et lancer une analyse",
+    "UC-01-02": "📖 [UC-01-02] Envoyer le questionnaire en amont au patient",
+    "UC-01-03": "📖 [UC-01-03] Suivre le statut de complétion du questionnaire amont",
+    "UC-01-04": "📖 [UC-01-04] Visualiser l'aperçu de l'e-mail et du questionnaire patient",
+    "UC-01-05": "📖 [UC-01-05] Gérer les erreurs et reprises d'envoi du questionnaire",
+    "UC-02-01": "📖 [UC-02-01] Saisir le questionnaire général avec 5 blocs et logique conditionnelle",
+    "UC-02-02": "📖 [UC-02-02] Valider et soumettre le questionnaire (patient amont)",
+    "UC-02-03": "📖 [UC-02-03] Afficher le questionnaire en version mobile avec responsive",
+    "UC-02-04": "📖 [UC-02-04] Pré-remplir l'Étape 1 si questionnaire amont complété",
+    "UC-03-01": "📖 [UC-03-01] Générer le pré-profil IA et les questions complémentaires",
+    "UC-03-02": "📖 [UC-03-02] Éditer, valider et retirer les questions suggérées par l'IA",
+    "UC-03-03": "📖 [UC-03-03] Finaliser et valider la trame d'interview",
+    "UC-04-01": "📖 [UC-04-01] Conduire l'interview assistée avec prise de notes IA",
+    "UC-04-02": "📖 [UC-04-02] Détecter une blessure et déclencher le diagnostic différentiel",
+    "UC-04-03": "📖 [UC-04-03] Valider/invalider les hypothèses du diagnostic différentiel",
+    "UC-04-04": "📖 [UC-04-04] Adapter le protocole de tests selon le diagnostic",
+    "UC-05-01": "📖 [UC-05-01] Importer un fichier de test de force (VALD, Étape 4)",
+    "UC-05-02": "📖 [UC-05-02] Importer un fichier de test de mobilité (VALD, Étape 5)",
+    "UC-05-03": "📖 [UC-05-03] Importer un fichier de test fonctionnel (Vitruve, Étape 6)",
+    "UC-05-04": "📖 [UC-05-04] Importer un fichier de données tapis (Stryd, Étape 7)",
+    "UC-05-05": "📖 [UC-05-05] Gérer les erreurs et les asymétries dans les imports",
+    "UC-06-01": "📖 [UC-06-01] Visionner la vidéo et accéder à la grille d'observation",
+    "UC-06-02": "📖 [UC-06-02] Remplir la grille d'observation (10 items, D/G, scoring)",
+    "UC-06-03": "📖 [UC-06-03] Synthétiser les observations et finaliser l'Étape 8",
+    "UC-07-01": "📖 [UC-07-01] Générer les deux versions du bilan (patient/expert)",
+    "UC-07-02": "📖 [UC-07-02] Éditer et valider les bilans avant publication",
+    "UC-07-03": "📖 [UC-07-03] Exporter et publier le bilan en PDF",
+    "UC-07-04": "📖 [UC-07-04] Tracer les versions du bilan et l'historique d'édition",
+    "UC-08-01": "📖 [UC-08-01] Créer et consulter le dossier patient unique",
+    "UC-08-02": "📖 [UC-08-02] Naviguer entre étapes (non-linéaire) et modifier le statut d'avancement",
+    "UC-08-03": "📖 [UC-08-03] Afficher l'anneau de progression et le stepper interactif",
+    "UC-09-01": "📖 [UC-09-01] Recueillir et valider le consentement patient (RGPD)",
+    "UC-09-02": "📖 [UC-09-02] Journaliser toutes les actions et décisions cliniques",
+    "UC-09-03": "📖 [UC-09-03] Implémenter le chiffrement des données (transit + repos)",
+    "UC-09-04": "📖 [UC-09-04] Gérer les droits RGPD (accès, rectification, effacement, portabilité)",
+    "UC-10-01": "📖 [UC-10-01] Concevoir l'architecture technique (stack, routeur, state)",
+    "UC-10-02": "📖 [UC-10-02] Implémenter le design system et composants réutilisables",
+    "UC-10-03": "📖 [UC-10-03] Planifier les intégrations externes (Maia, e-mail, IA, capteurs)"
   },
   "stats": {
-    "total_epics": 10,
     "total_use_cases": 38,
-    "total_tasks": 52,
     "issues_created": 38,
     "labels_created": 9
   },
@@ -527,6 +525,6 @@
       "planning_file": "factory-output\\planning-complete.json",
       "handoff_file": "factory-output\\github-init-complete.json"
     },
-    "remarks": "VÃ©rifier les assignees/milestones et remplacer <GITHUB_ORG> avant crÃ©ation automatique."
+    "remarks": "Vérifier les assignees/milestones et remplacer <GITHUB_ORG> avant création automatique."
   }
 }

@@ -1,14 +1,15 @@
-﻿# ADR 004 : Délégation de l'authentification (OIDC)
+﻿# ADR 004: Stratégie d'Authentification
 
-**Statut :** Accepté
-**Date :** 2026-06-06
+## Statut
+Accepté
 
 ## Contexte
-L'application doit gérer des comptes de professionnels de santé avec un haut niveau de sécurité, potentiellement avec du MFA (Multi-Factor Authentication).
+L'application cible deux populations : les physiothérapeutes (pros) et les patients. Le standard de sécurité pour la santé requiert le multi-facteur (MFA).
 
 ## Décision
-Ne pas implémenter de système d'authentification "maison". Déléguer la gestion des identités à un Identity Provider (IdP) externe certifié (ex: Auth0, Clerk, ou Azure AD B2C) via les standards OAuth2 / OIDC.
+- **Service** : Microsoft Entra External ID (anciennement Azure AD B2C).
+- **Implémentation** : OpenID Connect (OIDC) avec MFA obligatoire pour les praticiens. Les tokens JWT seront vérifiés par l'API Gateway et le backend NestJS.
 
 ## Conséquences
-- **Avantages** : Sécurité robuste par défaut, MFA inclus, gestion simplifiée des mots de passe oubliés et des politiques de sécurité.
-- **Inconvénients** : Coût potentiel lié à l'IdP, couplage fort avec le service choisi.
+- **Avantages** : Délégation complète de la sécurité identité à Microsoft, support natif du MFA et des flux de réinitialisation de mot de passe.
+- **Inconvénients** : Personnalisation de l'UI des pages de connexion B2C parfois complexe.

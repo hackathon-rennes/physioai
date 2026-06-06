@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Patient {
+  id        String    @id @default(cuid())
+  maiaId    String?   @unique @map("maia_id")
+  tenantId  String    @map("tenant_id") // Azure B2C
+  firstName String    @map("first_name")
+  lastName  String    @map("last_name")
+  email     String    @unique
+  phone     String?
+  birthDate DateTime? @map("birth_date")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  assessments Assessment[]
+
+  @@index([tenantId])
+  @@map("patients")
+}
+
+model Assessment {
+  id               String           @id @default(cuid())
+  patientId        String           @map("patient_id")
+  status           String           @default("DRAFT")
+  notes            String?
+  scheduledAt      DateTime         @map("scheduled_at")
+  questionnaireUrl String?          @map("questionnaire_url") // Lien du questionnaire amont
+  isPreAssessmentDone Boolean       @default(false) @map("is_pre_assessment_done") // Questionnaire Ã©tape 1 complÃ©tÃ©
+  createdAt        DateTime         @default(now()) @map("created_at")
+  updatedAt        DateTime         @updatedAt @map("updated_at")
+
+  patient Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  videos  Video[]
+  report  Report?
+
+  @@index([patientId])
+  @@map("assessments")
+}
+
+model Video {
+  id           String      @id @default(cuid())
+  assessmentId String      @map("assessment_id")
+  blobUrl      String      @map("blob_url")
+  viewType     String // FRONT, BACK, SIDE_LEFT, SIDE_RIGHT
+  status       String      @default("UPLOADED") // UPLOADED, ANALYZING, COMPLETED, ERROR
+  createdAt    DateTime    @default(now()) @map("created_at")
+
+  assessment Assessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+
+  @@index([assessmentId])
+  @@map("videos")
+}
+
+model Report {
+  id              String   @id @default(cuid())
+  assessmentId    String   @unique @map("assessment_id")
+  aiMetrics       String   @map("ai_metrics") // BiomÃ©canique (JSON stringifiÃ© pr SQLite)
+  recommendations String   // Plan d'action renvoyÃ© (JSON stringifiÃ© pr SQLite)
+  pdfUrl          String?  @map("pdf_url")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  assessment Assessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+
+  @@map("reports")
+}

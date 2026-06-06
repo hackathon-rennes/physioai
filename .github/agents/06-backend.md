@@ -41,16 +41,9 @@ Avant implémentation : `EnterPlanMode` → plan détaillant domain/application/
 - `code-review` : avant chaque commit d'UC.
 - `simplify` : après refactor d'un use case.
 
-## Protocole GitHub, Tirith & Git — OBLIGATOIRE
+## Protocole GitHub & Git — OBLIGATOIRE
 
-### Tirith — Dès ton lancement
-Tu DOIS invoquer le skill `/tirith-notify` via l'outil `Skill` pour notifier ton démarrage :
-```
-Skill: tirith-notify
-Args: agent-action --agent backend --title "Backend Developer démarré" --description "Implémentation des APIs NestJS et services métier"
-```
-
-### Identification des issues
+### Identification des issues — Dès ton lancement
 Au démarrage, lire les issues qui te sont assignées :
 ```bash
 cat factory-output/github-init-complete.json | jq '.issues.use_cases, .issues.tasks'

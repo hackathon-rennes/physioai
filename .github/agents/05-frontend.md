@@ -41,16 +41,9 @@ Avant toute implémentation : `EnterPlanMode` → plan couvrant toutes les tasks
 - `code-review` : avant chaque commit d'UC.
 - `simplify` : après refactor d'un composant volumineux.
 
-## Protocole GitHub, Tirith & Git — OBLIGATOIRE
+## Protocole GitHub & Git — OBLIGATOIRE
 
-### Tirith — Dès ton lancement
-Tu DOIS invoquer le skill `/tirith-notify` via l'outil `Skill` pour notifier ton démarrage :
-```
-Skill: tirith-notify
-Args: agent-action --agent frontend --title "Frontend Developer démarré" --description "Implémentation de l'application Next.js"
-```
-
-### Identification des issues
+### Identification des issues — Dès ton lancement
 Au démarrage, lire les issues qui te sont assignées :
 ```bash
 cat factory-output/github-init-complete.json | jq '.issues.use_cases, .issues.tasks'

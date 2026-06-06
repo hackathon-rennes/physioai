@@ -1,14 +1,16 @@
-﻿# ADR 005 : Génération des PDF côté Backend
+﻿# ADR 005: Génération des rapports PDF
 
-**Statut :** Accepté
-**Date :** 2026-06-06
+## Statut
+Accepté
 
 ## Contexte
-Les patients doivent pouvoir recevoir leur programme sous format PDF. Ce document doit avoir une présentation soignée (graphiques, tableaux de bord).
+Les praticiens ont besoin d'exporter des bilans physiothérapeutiques au format PDF. Ce rendu doit être fluide et identique à l'affichage web.
 
 ## Décision
-La génération PDF se fera côté backend en utilisant un outil de rendu HTML vers PDF (ex: Puppeteer ou Playwright) basé sur des templates HTML/CSS.
+- **Technologie** : Puppeteer (headless Chrome).
+- **Hébergement** : Microservice NestJS séparé OU Azure Function dédié conteneurisé.
+- **Stockage temporaire** : Azure Blob Storage (avec lifecycle management pour suppression auto après 1 heure, accès via SAS tokens à usage unique).
 
 ## Conséquences
-- **Avantages** : Permet de réutiliser les compétences HTML/CSS de l'équipe pour designer les documents. Identique sur tous les environnements.
-- **Inconvénients** : Le rendu via un navigateur headless consomme beaucoup de mémoire et de CPU sur le backend. Une file de messages (queue) pourrait être nécessaire en production pour ne pas bloquer les requêtes.
+- **Avantages** : Rendu HTML/CSS parfait. La séparation dans un microservice évite de bloquer la boucle d'événements (Event Loop) du backend principal.
+- **Inconvénients** : Les PDF nécessitant Chrome headless consomment beaucoup de RAM (nécessite d'ajuster les profils de ressources ACA).

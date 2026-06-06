@@ -1,14 +1,16 @@
-﻿# ADR 003 : Délégation de l'IA à un service tiers (OpenAI)
+﻿# ADR 003: Intégration de l'Intelligence Artificielle
 
-**Statut :** Accepté
-**Date :** 2026-06-06
+## Statut
+Accepté
 
 ## Contexte
-L'application doit analyser des bilans cliniques et générer des plans de course personnalisés de manière intelligente.
+La solution doit générer des résumés de séances et des parcours de soins. L'utilisation d'IA générative avec des DSP exige une stricte isolation des données (pas d'entraînement sur les données clients).
 
 ## Décision
-Nous utiliserons une API LLM tierce (ex: API OpenAI via Azure OpenAI pour des raisons de conformité santé/RGPD) plutôt que d'héberger un modèle local.
+- **Fournisseur IA** : Microsoft Foundry / Azure OpenAI Service (Région Europe certifiée de préférence France Central).
+- **Modèle** : GPT-4o (Preview) ou équivalent.
+- **Sécurité** : Accès exclusif via Azure Private Endpoint + Managed Identity.
 
 ## Conséquences
-- **Avantages** : Qualité de génération très élevée d'emblée, pas d'infrastructure GPU coûteuse à maintenir, mise en place rapide.
-- **Inconvénients** : Dépendance à un tiers, coût à la requête, nécessité de pseudonymiser les données patient envoyées dans le prompt pour respecter le RGPD/HDS.
+- **Avantages** : Les requêtes (prompts) restent dans la boundary de sécurité du VNet. Azure garantit que les données ne sont pas utilisées pour réentraîner les modèles.
+- **Inconvénients** : Quotas réseau et dépendance forte à la disponibilité d'Azure OpenAI dans la région cible.

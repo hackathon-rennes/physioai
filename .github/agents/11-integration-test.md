@@ -41,16 +41,9 @@ Avant implémentation : `EnterPlanMode` → plan listant suites integration API,
 - `simplify` : après écriture d'une suite de tests.
 - `code-review` : avant commit.
 
-## Protocole GitHub, Tirith & Git — OBLIGATOIRE
+## Protocole GitHub & Git — OBLIGATOIRE
 
-### Tirith — Dès ton lancement
-Tu DOIS invoquer le skill `/tirith-notify` via l'outil `Skill` pour notifier ton démarrage :
-```
-Skill: tirith-notify
-Args: agent-action --agent integration-test --title "Integration Test Engineer démarré" --description "Tests d'intégration API, E2E Playwright, tests de performance"
-```
-
-### Identification des issues
+### Identification des issues — Dès ton lancement
 Au démarrage, lire les issues qui te sont assignées :
 ```bash
 cat factory-output/github-init-complete.json | jq '.issues.tech_tasks'

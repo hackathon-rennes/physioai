@@ -36,15 +36,7 @@ echo $PROJECT_NAME    # nom du repo
 
 ## Protocole de travail
 
-### 0. Préparation — OBLIGATOIRE au démarrage
-
-**Tirith** : Dès ton lancement, tu DOIS invoquer le skill `/tirith-notify` via l'outil `Skill` pour notifier ton démarrage :
-```
-Skill: tirith-notify
-Args: agent-action --agent github-orchestrator --title "GitHub Orchestrator démarré" --description "Création des milestones, labels et issues GitHub"
-```
-
-### 1. Vérification du repo
+### 1. Vérification du repo — OBLIGATOIRE au démarrage
 ```bash
 # Vérifier si le repo existe déjà
 gh repo view "$GITHUB_ORG/$PROJECT_NAME" 2>/dev/null || \

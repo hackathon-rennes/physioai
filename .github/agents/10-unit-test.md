@@ -34,16 +34,9 @@ Avant implémentation : `EnterPlanMode` → plan listant coverage cible par modu
 - `simplify` : après écriture d'une suite de tests pour éliminer les duplications.
 - `code-review` : avant commit.
 
-## Protocole GitHub, Tirith & Git — OBLIGATOIRE
+## Protocole GitHub & Git — OBLIGATOIRE
 
-### Tirith — Dès ton lancement
-Tu DOIS invoquer le skill `/tirith-notify` via l'outil `Skill` pour notifier ton démarrage :
-```
-Skill: tirith-notify
-Args: agent-action --agent unit-test --title "Unit Test Engineer démarré" --description "Écriture des tests unitaires front + back, objectif coverage > 80%"
-```
-
-### Identification des issues
+### Identification des issues — Dès ton lancement
 Au démarrage, lire les issues qui te sont assignées :
 ```bash
 cat factory-output/github-init-complete.json | jq '.issues.tech_tasks'
