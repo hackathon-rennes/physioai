@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export default function PatientsDashboardPage() {
   const { patients, searchQuery, setSearchQuery, selectedPatient, selectPatient } = usePatientStore();
@@ -88,12 +90,11 @@ export default function PatientsDashboardPage() {
                   setIsDialogOpen(open);
                   if (!open) selectPatient(null);
                 }}>
-                  <DialogTrigger asChild>
-                    <div className="w-full">
-                      <Button onClick={() => handleLaunchAnalysis(patient)} className="w-full">
-                        Lancer une analyse
-                      </Button>
-                    </div>
+                  <DialogTrigger 
+                    onClick={() => handleLaunchAnalysis(patient)} 
+                    className={cn(buttonVariants({ variant: "default" }), "w-full")}
+                  >
+                    Lancer une analyse
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>

@@ -1,26 +1,173 @@
 @import "tailwindcss";
 
+/* 
+ * NOTE: We disabled tailwindcss-animate due to a Turbopack/Next.js bug resolving plugins. 
+ * Standard Tailwind transitions will be used instead for the hackathon. 
+ */
+
+@custom-variant dark (&:is(.dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Marque temporelle / PhysioAI */
+  --ink: #0E2A33;       
+  --ink-2: #13343F;
+  --brand: #15B7A6;     
+  --brand-d: #0E8E81;   
+  --brand-l: #C9F2EC;   
+  --lime: #B8E02A;      
+  --lime-d: #9CC11E;
+
+  /* Surfaces */
+  --paper: #F4F7F8;     
+  --surface-card: #FFFFFF;      
+  --line: #E2EAEC;      
+  --text-muted: #5E7480;     
+  --txt: #16303A;       
+
+  /* Feux (normes / gestion douleur / scoring) */
+  --status-green: #28B47A;     
+  --status-orange: #F5A623;    
+  --status-red: #E5484D;
+
+  /* SHADCN mappings */
+  --background: var(--paper);
+  --foreground: var(--txt);
+  --card: var(--surface-card);
+  --card-foreground: var(--txt);
+  --popover: var(--surface-card);
+  --popover-foreground: var(--txt);
+  --primary: var(--brand);
+  --primary-foreground: #ffffff;
+  --secondary: var(--ink);
+  --secondary-foreground: #ffffff;
+  --muted: #E2EAEC;
+  --muted-foreground: var(--text-muted);
+  --accent: var(--brand-l);
+  --accent-foreground: var(--txt);
+  --destructive: var(--status-red);
+  --destructive-foreground: #ffffff;
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--brand);
+  --chart-1: var(--brand);
+  --chart-2: var(--lime);
+  --chart-3: var(--status-orange);
+  --chart-4: var(--ink);
+  --chart-5: var(--status-green);
+  --radius: 16px;
+}
+
+.dark {
+  --background: var(--ink);
+  --foreground: var(--paper);
+  --card: var(--ink-2);
+  --card-foreground: var(--paper);
+  --popover: var(--ink-2);
+  --popover-foreground: var(--paper);
+  --primary: var(--brand);
+  --primary-foreground: #ffffff;
+  --secondary: var(--lime);
+  --secondary-foreground: var(--ink);
+  --muted: var(--ink-2);
+  --muted-foreground: #A0B3BB;
+  --accent: var(--ink-2);
+  --accent-foreground: var(--paper);
+  --destructive: var(--status-red);
+  --destructive-foreground: #ffffff;
+  --border: #2C4A55;
+  --input: #2C4A55;
+  --ring: var(--brand);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-brand: var(--brand);
+  --color-brand-d: var(--brand-d);
+  --color-brand-l: var(--brand-l);
+  --color-lime: var(--lime);
+  --color-lime-d: var(--lime-d);
+  --color-green: var(--status-green);
+  --color-orange: var(--status-orange);
+  --color-red: var(--status-red);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --animate-fade: fade 0.35s ease-out;
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Typographie basée sur specs */
+  h1, .title {
+    font-size: clamp(25px, 3vw, 28px);
+    font-weight: 800;
+  }
+  
+  h2, .card h2 {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  h3, .keymsg h3 {
+    font-size: 21px;
+    font-weight: 700;
+  }
+
+  p, span, div, label {
+    font-size: 14px; 
+  }
+
+  .hint-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-muted-foreground);
+  }
+
+  .overline-text {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
 }
