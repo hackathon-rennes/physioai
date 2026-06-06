@@ -65,10 +65,12 @@ const defaultValues: Partial<QuestionnaireFormValues> = {
   expectations: '',
 };
 
-import { use } from "react";
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 
-export default function QuestionnairePage({ params }: { params: Promise<{ id: string }> }) {
-  const resolvedParams = use(params);
+function QuestionnaireForm() {
+  const searchParams = useSearchParams();
+  const patientId = searchParams.get('patientId') || "0";
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -97,14 +99,14 @@ export default function QuestionnairePage({ params }: { params: Promise<{ id: st
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          patientId: resolvedParams.id,
+          patientId: patientId,
           status: "QUESTIONNAIRE_COMPLETED",
           notes: JSON.stringify(data), // For hackathon MVP
         }),
       });
 
       if (response.ok) {
-        markQuestionnaireCompleted(resolvedParams.id);
+        markQuestionnaireCompleted(patientId);
         alert("Questionnaire sauvegardé en base de données avec succès !");
         router.push("/patients");
       }
@@ -395,5 +397,13 @@ export default function QuestionnairePage({ params }: { params: Promise<{ id: st
         </Form>
       </Card>
     </div>
+  );
+}
+
+export default function QuestionnairePage() {
+  return (
+    <Suspense fallback={<div>Chargement...</div>}>
+      <QuestionnaireForm />
+    </Suspense>
   );
 }

@@ -23,6 +23,9 @@ let AssessmentsController = class AssessmentsController {
     async create(payload) {
         return this.assessmentsService.create(payload);
     }
+    async generateAiProfil(id) {
+        return this.assessmentsService.generateAiProfil(id);
+    }
 };
 exports.AssessmentsController = AssessmentsController;
 __decorate([
@@ -32,6 +35,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], AssessmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Post)(':id/generate-ai-profil'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], AssessmentsController.prototype, "generateAiProfil", null);
 exports.AssessmentsController = AssessmentsController = __decorate([
     (0, common_1.Controller)('v1/assessments'),
     __metadata("design:paramtypes", [assessments_service_1.AssessmentsService])

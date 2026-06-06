@@ -9,6 +9,21 @@ export declare class AssessmentsService {
         scheduledAt: Date;
         questionnaireUrl: string | null;
         isPreAssessmentDone: boolean;
+        isPreProfilIADone: boolean;
+        aiQuestions: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+        patientId: string;
+    }>;
+    generateAiProfil(patientId: string): Promise<{
+        id: string;
+        status: string;
+        notes: string | null;
+        scheduledAt: Date;
+        questionnaireUrl: string | null;
+        isPreAssessmentDone: boolean;
+        isPreProfilIADone: boolean;
+        aiQuestions: string | null;
         createdAt: Date;
         updatedAt: Date;
         patientId: string;

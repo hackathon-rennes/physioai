@@ -1,52 +1,20 @@
-import Link from 'next/link';
-import { Activity, Users, FileText, Video, Settings, Bell, UserCircle } from 'lucide-react';
-import Image from 'next/image';
+﻿import Link from 'next/link';
+import { Bell } from 'lucide-react';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex bg-[var(--paper)]">
-      {/* Bandeau de navigation gauche (Thème Anthracite/Teal) */}
-      <aside className="w-[280px] bg-[var(--ink)] text-white flex flex-col shadow-xl z-20 shrink-0 relative overflow-hidden">
-        <div className="h-20 w-full bg-[#1b1b1b] relative flex items-center justify-center shrink-0 border-b border-[var(--ink-2)]">
-          <img 
-            src="/logo.png" 
-            alt="Physio Running Lab" 
-            className="w-full h-full object-cover"
-          />
-        </div>
-        
-        <div className="px-6 py-5 text-[11px] font-bold uppercase tracking-wider text-[#5E7480]">Menu principal</div>
-        
-        <nav className="flex-1 overflow-y-auto px-4 space-y-2">
-          <Link href="/patients" className="flex items-center px-4 py-3 rounded-xl bg-[var(--ink-2)] text-white font-medium transition-all duration-200 border-l-4 border-[var(--brand)] shadow-sm">
-            <Users className="w-5 h-5 mr-3 text-[var(--brand)]" />
-            Dossiers Patients
-          </Link>
-          <Link href="/bilans" className="flex items-center px-4 py-3 rounded-xl text-gray-400 hover:bg-[var(--ink-2)] hover:text-white transition-all duration-200 border-l-4 border-transparent hover:border-gray-500">
-            <FileText className="w-5 h-5 mr-3" />
-            Bilans en cours
-          </Link>
-          <Link href="/videos" className="flex items-center px-4 py-3 rounded-xl text-gray-400 hover:bg-[var(--ink-2)] hover:text-white transition-all duration-200 border-l-4 border-transparent hover:border-gray-500">
-            <Video className="w-5 h-5 mr-3" />
-            Vidéos Cliniques
-          </Link>
-        </nav>
-
-        <div className="p-4 border-t border-[var(--ink-2)]">
-          <Link href="/settings" className="flex items-center px-4 py-3 rounded-xl text-gray-400 hover:bg-[var(--ink-2)] hover:text-white transition-colors">
-            <Settings className="w-5 h-5 mr-3" />
-            Paramétrages
-          </Link>
-        </div>
-      </aside>
-
-      {/* Surface Principale */}
+    <div className="min-h-screen flex flex-col bg-[var(--paper)]">
+      {/* Surface Principale Sans Sidebar */}
       <main className="flex-1 flex flex-col h-screen overflow-hidden">
         
         {/* Header Haut */}
-        <header className="h-20 bg-[var(--ink)] border-b border-[var(--ink-2)] flex items-center px-8 justify-between shrink-0 shadow-sm z-0">
-          <div className="flex items-center">
-            <h2 className="text-xl font-extrabold text-white tracking-tight">Espace Kinésithérapeute</h2>
+        <header className="h-20 bg-[var(--ink)] border-b border-[var(--ink-2)] flex items-center px-8 justify-between shrink-0 shadow-sm z-10">
+          <div className="flex items-center space-x-6">
+            <Link href="/patients" className="hover:opacity-90 transition-opacity">
+              <img src="/logo-physio.png" alt="Physio Running Lab" className="h-12 object-contain" />
+            </Link>
+            <div className="h-8 w-px bg-[var(--ink-2)]"></div>
+            <h2 className="text-xl font-extrabold text-white tracking-tight">Espace Kiné - Accueil</h2>
           </div>
           <div className="flex items-center space-x-6">
             <button className="text-gray-400 hover:text-[var(--brand)] transition-colors relative">

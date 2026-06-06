@@ -28,6 +28,20 @@ let PatientsService = class PatientsService {
             }
         });
     }
+    async findOne(id) {
+        const patient = await this.prisma.patient.findUnique({
+            where: { id },
+            include: {
+                assessments: {
+                    orderBy: { createdAt: 'desc' },
+                    take: 1
+                }
+            }
+        });
+        if (!patient)
+            throw new common_1.NotFoundException('Patient non trouvé');
+        return patient;
+    }
 };
 exports.PatientsService = PatientsService;
 exports.PatientsService = PatientsService = __decorate([

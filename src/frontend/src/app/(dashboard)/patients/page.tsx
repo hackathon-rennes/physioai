@@ -120,7 +120,7 @@ export default function PatientsDashboardPage() {
                     Lancer une analyse
                   </DialogTrigger>
                   ) : (
-                    <Button onClick={() => router.push(`/patients/${patient.id}/interview`)} variant="outline" className="w-full bg-[var(--status-green)]/10 text-[var(--status-green)] hover:bg-[var(--status-green)]/20 hover:text-[var(--status-green)] border-[var(--status-green)]">
+                    <Button onClick={() => router.push(`/interview?patientId=${patient.id}`)} variant="outline" className="w-full bg-[var(--status-green)]/10 text-[var(--status-green)] hover:bg-[var(--status-green)]/20 hover:text-[var(--status-green)] border-[var(--status-green)]">
                       <CheckCircle2 className="w-4 h-4 mr-2" />
                       Questionnaire disponible
                     </Button>
@@ -131,8 +131,8 @@ export default function PatientsDashboardPage() {
                     </DialogHeader>
                     <form onSubmit={(e) => {
                       e.preventDefault();
-                      // Redirect to the questionnaire directly to test the new UC-02 Page!
-                      router.push(`/patients/${selectedPatient?.id}/questionnaire`);
+                      // Redirect to the external questionnaire directly to test the new UC-02 Page!
+                      router.push(`/questionnaire?patientId=${selectedPatient?.id}`);
                     }} className="space-y-4 py-4">
                       <div className="space-y-2">
                         <Label htmlFor="email">Email du patient (pré-rempli via Maia)</Label>

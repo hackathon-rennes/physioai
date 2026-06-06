@@ -32,7 +32,9 @@ model Assessment {
   notes            String?
   scheduledAt      DateTime         @map("scheduled_at")
   questionnaireUrl String?          @map("questionnaire_url") // Lien du questionnaire amont
-  isPreAssessmentDone Boolean       @default(false) @map("is_pre_assessment_done") // Questionnaire Ã©tape 1 complÃ©tÃ©
+  isPreAssessmentDone Boolean       @default(false) @map("is_pre_assessment_done") // Questionnaire étape 1 complété
+  isPreProfilIADone   Boolean       @default(false) @map("is_preprofil_ia_done") // Etape 2 (Bouton Lancé par Kiné)
+  aiQuestions         String?       @map("ai_questions") // Questions IA générées (JSON stringifié)
   createdAt        DateTime         @default(now()) @map("created_at")
   updatedAt        DateTime         @updatedAt @map("updated_at")
 
