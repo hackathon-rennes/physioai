@@ -516,8 +516,10 @@
     "UC-10-03": "📖 [UC-10-03] Planifier les intégrations externes (Maia, e-mail, IA, capteurs)"
   },
   "stats": {
-    "total_use_cases": 38,
-    "issues_created": 38,
+    "total_epics": 10,
+    "total_use_cases": 46,
+    "total_tasks": 73,
+    "issues_created": 46,
     "labels_created": 9
   },
   "notes": {
