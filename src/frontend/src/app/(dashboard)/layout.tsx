@@ -6,12 +6,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <div className="min-h-screen flex bg-[var(--paper)]">
       {/* Bandeau de navigation gauche (Thème Anthracite/Teal) */}
-      <aside className="w-[280px] bg-[var(--ink)] text-white flex flex-col shadow-xl z-10 shrink-0">
-        <div className="h-20 flex items-center justify-center px-6 border-b border-[var(--ink-2)] bg-white">
+      <aside className="w-[280px] bg-[var(--ink)] text-white flex flex-col shadow-xl z-20 shrink-0 relative overflow-hidden">
+        <div className="h-20 w-full bg-[#1b1b1b] relative flex items-center justify-center shrink-0 border-b border-[var(--ink-2)]">
           <img 
-            src="https://physiorunninglab.fr/wp-content/uploads/2025/05/Physio-Running-Lab-Logo-3.png" 
+            src="/logo.png" 
             alt="Physio Running Lab" 
-            className="h-10 object-contain"
+            className="w-full h-full object-cover"
           />
         </div>
         
@@ -44,21 +44,21 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <main className="flex-1 flex flex-col h-screen overflow-hidden">
         
         {/* Header Haut */}
-        <header className="h-20 bg-white border-b border-[var(--line)] flex items-center px-8 justify-between shrink-0 shadow-sm z-0">
+        <header className="h-20 bg-[var(--ink)] border-b border-[var(--ink-2)] flex items-center px-8 justify-between shrink-0 shadow-sm z-0">
           <div className="flex items-center">
-            <h2 className="text-xl font-extrabold text-[var(--ink)] tracking-tight">Espace Kinésithérapeute</h2>
+            <h2 className="text-xl font-extrabold text-white tracking-tight">Espace Kinésithérapeute</h2>
           </div>
           <div className="flex items-center space-x-6">
-            <button className="text-[var(--text-muted)] hover:text-[var(--brand)] transition-colors relative">
+            <button className="text-gray-400 hover:text-[var(--brand)] transition-colors relative">
               <Bell className="w-6 h-6" />
-              <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-[var(--status-red)] rounded-full border-2 border-white"></span>
+              <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-[var(--status-red)] rounded-full border-2 border-[var(--ink)]"></span>
             </button>
-            <div className="flex items-center space-x-4 pl-6 border-l border-[var(--line)]">
+            <div className="flex items-center space-x-4 pl-6 border-l border-[var(--ink-2)]">
               <div className="text-right">
-                <div className="text-sm font-bold text-[var(--ink)]">Dr. Julien</div>
-                <div className="text-xs text-[var(--brand-d)] font-medium">Expert Physio Running</div>
+                <div className="text-sm font-bold text-white">Dr. Julien</div>
+                <div className="text-xs text-[var(--brand)] font-medium">Expert Physio Running</div>
               </div>
-              <div className="w-10 h-10 bg-[var(--brand-l)] rounded-full flex items-center justify-center text-[var(--brand-d)] font-bold shadow-sm">
+              <div className="w-10 h-10 bg-[var(--brand)] rounded-full flex items-center justify-center text-[var(--ink)] font-bold shadow-sm">
                 J
               </div>
             </div>
