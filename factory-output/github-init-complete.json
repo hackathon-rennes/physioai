@@ -1,0 +1,253 @@
+{
+  "version": "1.0",
+  "produced_at": "2026-06-06T00:00:00Z",
+  "produced_by": "github-orchestrator",
+  "repository": {
+    "owner": "<GITHUB_ORG>",
+    "name": "physioai",
+    "url": "https://github.com/<GITHUB_ORG>/physioai"
+  },
+  "labels": [
+    {
+      "name": "epic",
+      "color": "0e7490",
+      "description": "Epic fonctionnel de haut niveau"
+    },
+    {
+      "name": "use-case",
+      "color": "2563eb",
+      "description": "Cas d'utilisation (UC)"
+    },
+    {
+      "name": "task",
+      "color": "16a34a",
+      "description": "Tâche de développement"
+    },
+    {
+      "name": "bug",
+      "color": "dc2626",
+      "description": "Problème / régression"
+    },
+    {
+      "name": "doc",
+      "color": "374151",
+      "description": "Documentation"
+    },
+    {
+      "name": "security",
+      "color": "b91c1c",
+      "description": "Sécurité / vulnérabilité"
+    },
+    {
+      "name": "ci",
+      "color": "0ea5e9",
+      "description": "Intégration continue / pipelines"
+    },
+    {
+      "name": "blocked",
+      "color": "fca5a5",
+      "description": "Bloqué (dépendances / attente)"
+    },
+    {
+      "name": "in-progress",
+      "color": "fcd34d",
+      "description": "En cours"
+    },
+    {
+      "name": "review",
+      "color": "a5b4fc",
+      "description": "En revue / PR ouverte"
+    },
+    {
+      "name": "architecture",
+      "color": "f97316",
+      "description": "Décision / tâche d'architecture"
+    },
+    {
+      "name": "won't-have",
+      "color": "9ca3af",
+      "description": "Ne sera pas inclus dans cette version"
+    }
+  ],
+  "issues": {
+    "UC-001": {
+      "title": "📖 [UC-001] Inscription et profil utilisateur",
+      "body": "Contexte:\n- L'utilisateur doit pouvoir s'inscrire et compléter son profil pour utiliser l'application Physio Running Lab.\n\nCritères d'acceptation:\n- Formulaire d'inscription (email, mot de passe) validé côté client et serveur.\n- Vérification par email (placeholder pour l'intégration SMTP).\n- Page profil avec champs: nom, âge, poids, niveau sportif.\n- Validation des entrées et messages d'erreur clairs.\n\nEstimate",
+      "assignee": null,
+      "labels": [
+        "use-case",
+        "frontend",
+        "backend",
+        "priority-high"
+      ]
+    },
+    "UC-002": {
+      "title": "📖 [UC-002] Enregistrement de séance de course",
+      "body": "Contexte:\n- L'utilisateur peut démarrer/arrêter une séance et enregistrer les métriques de course.\n\nCritères d'acceptation:\n- Interface de démarrage/arrêt de séance visible et réactive.\n- Sauvegarde des données chrono,distance,pace,GPS (si autorisé).\n- Endpoint API pour créer/mettre à jour séance.\n- Tests unitaires pour logique d'enregistrement.\n\nEstimate",
+      "assignee": null,
+      "labels": [
+        "use-case",
+        "frontend",
+        "backend",
+        "priority-high"
+      ]
+    },
+    "UC-003": {
+      "title": "📖 [UC-003] Dashboard de progression",
+      "body": "Contexte:\n- L'utilisateur consulte l'historique et les tendances de ses performances.\n\nCritères d'acceptation:\n- Page dashboard affichant derniers 7/30/90 jours.\n- Graphiques: distance totale, temps moyen, évolution du pace.\n- Filtrage par période et type d'activité.\n- Endpoints API de résumé prêts pour la consommation frontend.\n\nEstimate",
+      "assignee": null,
+      "labels": [
+        "use-case",
+        "frontend",
+        "backend",
+        "priority-medium"
+      ]
+    },
+    "UC-004": {
+      "title": "📖 [UC-004] Plan d'entraînement personnalisé",
+      "body": "Contexte:\n- Générer un plan d'entraînement adapté aux objectifs et au niveau de l'utilisateur.\n\nCritères d'acceptation:\n- Formulaire de définition d'objectif (distance, échéance, niveau).\n- Moteur basique de génération de plan (règles simples documentées).\n- Affichage du plan dans l'UI et possibilité d'accepter/rejeter.\n- Tests d'intégration du moteur.\n\nEstimate",
+      "assignee": null,
+      "labels": [
+        "use-case",
+        "backend",
+        "frontend",
+        "priority-high"
+      ]
+    },
+    "UC-005": {
+      "title": "📖 [UC-005] Import/Export GPX",
+      "body": "Contexte:\n- Permettre import et export de parcours en GPX pour interopérabilité.\n\nCritères d'acceptation:\n- Upload d'un fichier GPX et parsing côté backend.\n- Export d'une séance en GPX téléchargeable.\n- Gestion des erreurs de format et tests.\n\nEstimate",
+      "assignee": null,
+      "labels": [
+        "use-case",
+        "backend",
+        "priority-low"
+      ]
+    },
+    "UC-006": {
+      "title": "📖 [UC-006] Notifications et rappels d'entraînement",
+      "body": "Contexte:\n- Envoyer des rappels in-app (et placeholder pour email/push) pour les séances planifiées.\n\nCritères d'acceptation:\n- Système de scheduling simple pour rappels in-app.\n- Interface pour activer/désactiver notifications.\n- Tests unitaires pour logique de scheduling.\n\nEstimate",
+      "assignee": null,
+      "labels": [
+        "use-case",
+        "backend",
+        "priority-medium"
+      ]
+    },
+    "UC-007": {
+      "title": "📖 [UC-007] Section sécurité et consentement RGPD",
+      "body": "Contexte:\n- Gestion du consentement et des données personnelles conformément au RGPD.\n\nCritères d'acceptation:\n- Banner de consentement lors de la première visite.\n- Page dédiée montrant les données collectées et option suppression compte.\n- Logs d'export suppression compatibles avec la politique.\n\nEstimate",
+      "assignee": null,
+      "labels": [
+        "use-case",
+        "security",
+        "doc",
+        "priority-high"
+      ]
+    },
+    "UC-008": {
+      "title": "📖 [UC-008] Intégration capteurs (Bluetooth) - MVP",
+      "body": "Contexte:\n- Support MVP pour capteurs couplés (rythme cardiaque) via Bluetooth (placeholder technique).\n\nCritères d'acceptation:\n- UI pour coupler un capteur (flux simulé si non disponible).\n- Backend capable de recevoir et stocker données cardio en temps réel ou batch.\n- Documentation technique minimale.\n\nEstimate",
+      "assignee": null,
+      "labels": [
+        "use-case",
+        "frontend",
+        "backend",
+        "priority-medium"
+      ]
+    },
+    "UC-009": {
+      "title": "📖 [UC-009] Multi-langues (FR/EN) - MVP",
+      "body": "Contexte:\n- Interface disponible en français et anglais.\n\nCritères d'acceptation:\n- Texte statique traduits via fichiers i18n.\n- Sélecteur langue dans UI et persistance du choix.\n- Processus simple pour ajouter nouvelles traductions.\n\nEstimate",
+      "assignee": null,
+      "labels": [
+        "use-case",
+        "frontend",
+        "doc",
+        "priority-low"
+      ]
+    },
+    "UC-010": {
+      "title": "📖 [UC-010] Monitoring et healthchecks",
+      "body": "Contexte:\n- Exposer endpoints de santé et métriques pour production.\n\nCritères d'acceptation:\n- Endpoints `/health` et `/ready` implémentés.\n- Intégration minimale de métriques (Prometheus-friendly ou placeholder).\n- Documentation opérationnelle dans `docs/`.\n\nEstimate",
+      "assignee": null,
+      "labels": [
+        "use-case",
+        "ci",
+        "architecture",
+        "priority-medium"
+      ]
+    }
+  },
+  "branch_naming_convention": "feature/<UC-or-TASK>-<short-kebab-desc> | fix/<bug-id>-<short-desc> | hotfix/<short-desc>",
+  "initial_branches": [
+    {
+      "task_id": "TASK-001",
+      "branch": "feature/UC-002-enregistrement-seance"
+    },
+    {
+      "task_id": "TASK-002",
+      "branch": "feature/UC-004-plan-entrainement"
+    },
+    {
+      "task_id": "TASK-003",
+      "branch": "feature/UC-001-inscription-profil"
+    },
+    {
+      "task_id": "TASK-004",
+      "branch": "feature/UC-008-integration-capteurs-mvp"
+    },
+    {
+      "task_id": "TASK-005",
+      "branch": "feature/UC-003-dashboard-progression"
+    },
+    {
+      "task_id": "TASK-006",
+      "branch": "feature/UC-007-rgpd-consentement"
+    },
+    {
+      "task_id": "TASK-007",
+      "branch": "feature/UC-010-monitoring-healthchecks"
+    },
+    {
+      "task_id": "TASK-008",
+      "branch": "feature/UC-005-import-export-gpx"
+    }
+  ],
+  "pr_template": {
+    "title": "PR: <type>/<référence> - Court résumé",
+    "body": "Résumé:\n- Quel est le changement principal ?\n\nContexte / problème:\n- Pourquoi ce changement est-il nécessaire ?\n\nSolution proposée:\n- Description concise de l'implémentation.\n\nChecklist (obligatoire):\n- [ ] J'ai lié cette PR à l'issue correspondante (ex: #UC-002)\n- [ ] Les tests unitaires associés sont ajoutés/retournent OK\n- [ ] La CI passe localement et sur la PR\n- [ ] J'ai ajouté la documentation nécessaire (`docs/` ou commentaires)\n- [ ] J'ai demandé une revue (assigner au relecteur)\n\nNotes pour le relecteur:\n- Points d'attention / limitations connues",
+    "checklist_items": [
+      "Lien vers l'issue",
+      "Tests unitaires",
+      "CI verte",
+      "Documentation",
+      "Demande de revue"
+    ]
+  },
+  "useCaseToIssue": {
+    "UC-001": "📖 [UC-001] Inscription et profil utilisateur",
+    "UC-002": "📖 [UC-002] Enregistrement de séance de course",
+    "UC-003": "📖 [UC-003] Dashboard de progression",
+    "UC-004": "📖 [UC-004] Plan d'entraînement personnalisé",
+    "UC-005": "📖 [UC-005] Import/Export GPX",
+    "UC-006": "📖 [UC-006] Notifications et rappels d'entraînement",
+    "UC-007": "📖 [UC-007] Section sécurité et consentement RGPD",
+    "UC-008": "📖 [UC-008] Intégration capteurs (Bluetooth) - MVP",
+    "UC-009": "📖 [UC-009] Multi-langues (FR/EN) - MVP",
+    "UC-010": "📖 [UC-010] Monitoring et healthchecks"
+  },
+  "stats": {
+    "total_use_cases": 10,
+    "issues_created": 10,
+    "labels_created": 12,
+    "milestones_created": null
+  },
+  "notes": {
+    "paths": {
+      "planning_file": "factory-output/planning-complete.json",
+      "handoff_file": "factory-output/github-init-complete.json"
+    },
+    "remarks": "Les titres et corps des issues sont rédigés en français conformément au plan. Remplacer les placeholders `<GITHUB_ORG>` et assigner les responsabilités réelles avant création GitHub."
+  }
+}
