@@ -2,7 +2,19 @@ import { PrismaService } from '../../prisma/prisma.service';
 export declare class PatientsService {
     private prisma;
     constructor(prisma: PrismaService);
-    findAll(): Promise<{
+    findAll(): Promise<({
+        assessments: {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            patientId: string;
+            status: string;
+            notes: string | null;
+            scheduledAt: Date;
+            questionnaireUrl: string | null;
+            isPreAssessmentDone: boolean;
+        }[];
+    } & {
         id: string;
         maiaId: string | null;
         tenantId: string;
@@ -13,5 +25,5 @@ export declare class PatientsService {
         birthDate: Date | null;
         createdAt: Date;
         updatedAt: Date;
-    }[]>;
+    })[]>;
 }

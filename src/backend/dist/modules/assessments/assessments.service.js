@@ -18,9 +18,23 @@ let AssessmentsService = class AssessmentsService {
         this.prisma = prisma;
     }
     async create(data) {
+        await this.prisma.patient.upsert({
+            where: { id: data.patientId },
+            update: {},
+            create: {
+                id: data.patientId,
+                tenantId: "hackathon-tenant",
+                firstName: "Mock",
+                lastName: "Patient",
+                email: `mock${data.patientId}@test.com`
+            }
+        });
         return this.prisma.assessment.create({
             data: {
                 patientId: data.patientId,
+                status: data.status || 'DRAFT',
+                notes: data.notes || null,
+                isPreAssessmentDone: data.status === 'QUESTIONNAIRE_COMPLETED',
                 scheduledAt: new Date(data.scheduledAt || Date.now()),
             },
         });

@@ -8,6 +8,12 @@ export class PatientsService {
   async findAll() {
     return this.prisma.patient.findMany({
       orderBy: { createdAt: 'desc' },
+      include: {
+        assessments: {
+          orderBy: { createdAt: 'desc' },
+          take: 1
+        }
+      }
     });
   }
 }

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { usePatientStore } from "@/store/usePatientStore";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -7,14 +7,36 @@ import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import { CheckCircle2 } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 
 export default function PatientsDashboardPage() {
-  const { patients, searchQuery, setSearchQuery, selectedPatient, selectPatient } = usePatientStore();
+  const router = useRouter();
+  const { searchQuery, setSearchQuery, selectedPatient, selectPatient } = usePatientStore();
+
+  const { data: dbPatients = [], isLoading } = useQuery({
+    queryKey: ['patients'],
+    queryFn: async () => {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/v1/patients`);
+      if (!res.ok) return [];
+      const data = await res.json();
+      return data.map((p: any) => ({
+        id: p.id,
+        maiaId: p.maiaId || 'N/A',
+        firstName: p.firstName,
+        lastName: p.lastName,
+        email: p.email,
+        nextAppointment: p.createdAt,
+        questionnaireCompleted: p.assessments?.[0]?.isPreAssessmentDone || false
+      }));
+    }
+  });
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const filteredPatients = patients.filter(p => 
+  const filteredPatients = dbPatients.filter(p => 
     p.firstName.toLowerCase().includes(searchQuery.toLowerCase()) || 
     p.lastName.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -90,23 +112,34 @@ export default function PatientsDashboardPage() {
                   setIsDialogOpen(open);
                   if (!open) selectPatient(null);
                 }}>
+                  {!patient.questionnaireCompleted ? (
                   <DialogTrigger 
                     onClick={() => handleLaunchAnalysis(patient)} 
                     className={cn(buttonVariants({ variant: "default" }), "w-full")}
                   >
                     Lancer une analyse
                   </DialogTrigger>
+                  ) : (
+                    <Button onClick={() => router.push(`/patients/${patient.id}/bilan`)} variant="outline" className="w-full bg-[var(--status-green)]/10 text-[var(--status-green)] hover:bg-[var(--status-green)]/20 hover:text-[var(--status-green)] border-[var(--status-green)]">
+                      <CheckCircle2 className="w-4 h-4 mr-2" />
+                      Questionnaire disponible
+                    </Button>
+                  )}
                   <DialogContent>
                     <DialogHeader>
                       <DialogTitle>Envoyer le questionnaire amont</DialogTitle>
                     </DialogHeader>
-                    <form onSubmit={handleSendQuestionnaire} className="space-y-4 py-4">
+                    <form onSubmit={(e) => {
+                      e.preventDefault();
+                      // Redirect to the questionnaire directly to test the new UC-02 Page!
+                      router.push(`/patients/${selectedPatient?.id}/questionnaire`);
+                    }} className="space-y-4 py-4">
                       <div className="space-y-2">
                         <Label htmlFor="email">Email du patient (pré-rempli via Maia)</Label>
                         <Input id="email" defaultValue={patient.email} />
                       </div>
                       <div className="bg-gray-50 p-3 rounded text-sm text-gray-600">
-                        Le patient recevra un lien sécurisé pour compléter ses informations en amont de son RDV du {new Date(patient.nextAppointment).toLocaleDateString('fr-FR')}.
+                         Mode Hackathon : Confirmer l'envoi vous emmènera directement sur le questionnaire interactif que le patient aurait reçu.
                       </div>
                       <DialogFooter>
                         <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>Annuler</Button>

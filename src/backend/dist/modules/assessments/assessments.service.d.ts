@@ -4,13 +4,13 @@ export declare class AssessmentsService {
     constructor(prisma: PrismaService);
     create(data: any): Promise<{
         id: string;
-        createdAt: Date;
-        updatedAt: Date;
         status: string;
         notes: string | null;
         scheduledAt: Date;
         questionnaireUrl: string | null;
         isPreAssessmentDone: boolean;
+        createdAt: Date;
+        updatedAt: Date;
         patientId: string;
     }>;
 }

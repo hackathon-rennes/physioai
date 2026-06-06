@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+﻿import { create } from 'zustand';
 
 export type Patient = {
   id: string;
@@ -7,6 +7,7 @@ export type Patient = {
   lastName: string;
   email: string;
   nextAppointment: string;
+  questionnaireCompleted?: boolean;
 };
 
 interface PatientStore {
@@ -15,6 +16,7 @@ interface PatientStore {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   selectPatient: (patient: Patient | null) => void;
+  markQuestionnaireCompleted: (id: string) => void;
 }
 
 export const usePatientStore = create<PatientStore>((set) => ({
@@ -28,4 +30,5 @@ export const usePatientStore = create<PatientStore>((set) => ({
   searchQuery: '',
   setSearchQuery: (query) => set({ searchQuery: query }),
   selectPatient: (patient) => set({ selectedPatient: patient }),
+  markQuestionnaireCompleted: (id) => set((state) => ({ patients: state.patients.map(p => p.id === id ? { ...p, questionnaireCompleted: true } : p) })),
 }));
