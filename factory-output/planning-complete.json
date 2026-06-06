@@ -1,0 +1,2018 @@
+{
+  "project": {
+    "name": "PhysioRunningLab",
+    "description": "Analyse clinique du coureur — application web responsive, workflow 9 étapes, assistance IA",
+    "version": "1.0",
+    "generated_at": "2026-06-06T00:00:00Z",
+    "generated_by": "product-manager"
+  },
+  "epics": [
+    {
+      "id": "EPIC-01",
+      "title": "Gérer la phase amont : accueil kiné, lancement analyse, envoi questionnaire",
+      "objective": "Permettre au kiné de sélectionner un patient (depuis Maia), de lancer une analyse et d'envoyer le questionnaire en amont du RDV, avec suivi du statut de complétion",
+      "business_value": "Réduire la saisie manuelle d'information patient et pré-remplir l'étape 1",
+      "actors": ["Kiné/Expert", "Patient"],
+      "entry_criteria": [
+        "Intégration Maia disponible (API ou export)",
+        "Design system validé"
+      ],
+      "exit_criteria": [
+        "Questionnaire amont envoyé et tracé",
+        "Statut de complétion visible en tableau de bord",
+        "Étape 1 pré-remplie si questionnaire complété"
+      ],
+      "dependencies": [],
+      "priority": "Must Have",
+      "story_points": "L",
+      "use_cases": [
+        "UC-01-01",
+        "UC-01-02",
+        "UC-01-03",
+        "UC-01-04",
+        "UC-01-05"
+      ]
+    },
+    {
+      "id": "EPIC-02",
+      "title": "Recueillir le questionnaire général patient (Étape 1)",
+      "objective": "Centraliser la saisie du profil coureur (5 blocs) avec logique conditionnelle, sauvegarde progressive, disponible en mobile et desktop",
+      "business_value": "Profil coureur structuré et normalisé, exploitable par l'IA",
+      "actors": ["Patient", "Kiné/Expert"],
+      "entry_criteria": [
+        "Phase amont opérationnelle (EPIC-01)",
+        "Modèle de données validé"
+      ],
+      "exit_criteria": [
+        "Questionnaire sauvegardé et repris sans perte",
+        "Logique conditionnelle fonctionnelle (orthèses, blessures)",
+        "Format réactif mobile/desktop"
+      ],
+      "dependencies": ["EPIC-01"],
+      "priority": "Must Have",
+      "story_points": "M",
+      "use_cases": [
+        "UC-02-01",
+        "UC-02-02",
+        "UC-02-03",
+        "UC-02-04"
+      ]
+    },
+    {
+      "id": "EPIC-03",
+      "title": "Analyser le profil et préparer la trame d'interview (Étape 2)",
+      "objective": "L'IA génère un pré-profil et des questions complémentaires ; le kiné les édite/valide pour constituer la trame d'interview personnalisée",
+      "business_value": "Interview guidée et adaptée, gain de temps kiné",
+      "actors": ["Kiné/Expert", "Moteur IA"],
+      "entry_criteria": [
+        "Questionnaire (Étape 1) suffisamment complet",
+        "Moteur IA disponible"
+      ],
+      "exit_criteria": [
+        "Pré-profil généré et affiché",
+        "Questions complémentaires éditables par le kiné",
+        "Trame d'interview finalisée"
+      ],
+      "dependencies": ["EPIC-02"],
+      "priority": "Must Have",
+      "story_points": "M",
+      "use_cases": [
+        "UC-03-01",
+        "UC-03-02",
+        "UC-03-03"
+      ]
+    },
+    {
+      "id": "EPIC-04",
+      "title": "Conduire l'interview et générer le diagnostic différentiel (Étape 3)",
+      "objective": "Mener l'interview assistée par l'IA ; si blessure détectée, générer un diagnostic différentiel avec matrices pathologies ; kiné valide les hypothèses",
+      "business_value": "Diagnostic structuré, traçabilité des signes contributifs, adaptation du protocole de tests",
+      "actors": ["Kiné/Expert", "Moteur IA"],
+      "entry_criteria": [
+        "Trame d'interview prête (Étape 2)",
+        "Base de connaissances pathologies ingérée",
+        "Moteur IA pour diagnostic différentiel"
+      ],
+      "exit_criteria": [
+        "Interview notée (prise de notes assistée)",
+        "Diagnostic différentiel généré si blessure",
+        "Hypothèses validées/invalidées par le kiné",
+        "Protocole de tests adapté selon diagnostic"
+      ],
+      "dependencies": ["EPIC-03"],
+      "priority": "Must Have",
+      "story_points": "L",
+      "use_cases": [
+        "UC-04-01",
+        "UC-04-02",
+        "UC-04-03",
+        "UC-04-04"
+      ]
+    },
+    {
+      "id": "EPIC-05",
+      "title": "Importer et valider les données capteurs (Étapes 4-7 : Force, Mobilité, Fonctionnel, Tapis)",
+      "objective": "Importer les fichiers CSV/FIT des sources VALD, Vitruve, Stryd ; calculer asymétries et comparer aux normes ; afficher les métriques",
+      "business_value": "Données capteurs centralisées et comparables (D/G/Normes), gain de saisie manuelle",
+      "actors": ["Kiné/Expert"],
+      "entry_criteria": [
+        "Diagnostic différentiel validé (Étape 3)",
+        "Composant d'import générique conçu",
+        "Schémas de parsing définis (VALD, Vitruve, Stryd)"
+      ],
+      "exit_criteria": [
+        "Chaque import est rattaché au patient/test courant",
+        "Asymétries D/G calculées et affichées",
+        "Comparaison aux normes (code couleur)",
+        "Erreur d'import gérée proprement (pas d'écrasement)"
+      ],
+      "dependencies": ["EPIC-04"],
+      "priority": "Must Have",
+      "story_points": "L",
+      "use_cases": [
+        "UC-05-01",
+        "UC-05-02",
+        "UC-05-03",
+        "UC-05-04",
+        "UC-05-05"
+      ]
+    },
+    {
+      "id": "EPIC-06",
+      "title": "Réaliser l'observation vidéo clinique (Étape 8)",
+      "objective": "Visionner la vidéo de course sur tapis et renseigner la grille d'observation standardisée (10 items, vues frontale/sagittale, deux côtés) avec scoring",
+      "business_value": "Observations structurées et tracées, scoring clinique standardisé",
+      "actors": ["Kiné/Expert"],
+      "entry_criteria": [
+        "Données Stryd importées (Étape 7)",
+        "Vidéo uploadée"
+      ],
+      "exit_criteria": [
+        "Grille remplie pour tous les items requis",
+        "Scoring (vert/orange/rouge) assigné",
+        "Marqueurs temporels et captures associés",
+        "Observations structurées sauvegardées"
+      ],
+      "dependencies": ["EPIC-05"],
+      "priority": "Must Have",
+      "story_points": "M",
+      "use_cases": [
+        "UC-06-01",
+        "UC-06-02",
+        "UC-06-03"
+      ]
+    },
+    {
+      "id": "EPIC-07",
+      "title": "Générer et publier le bilan (Étape 9)",
+      "objective": "L'IA agrège les données (étapes 1-8) et génère deux versions du bilan (patient/expert) ; kiné valide/édite ; export PDF et partage au patient",
+      "business_value": "Bilan impactant, deux niveaux de lecture, traçabilité de publication",
+      "actors": ["Kiné/Expert", "Moteur IA"],
+      "entry_criteria": [
+        "Observation vidéo complétée (Étape 8)",
+        "Moteur IA pour rédaction bilan"
+      ],
+      "exit_criteria": [
+        "Deux versions générées (patient/expert)",
+        "Kiné valide avant publication",
+        "Bilan exporté en PDF",
+        "Bilan partagé au patient (version synthétique)",
+        "Versionnage et traçabilité"
+      ],
+      "dependencies": ["EPIC-06"],
+      "priority": "Must Have",
+      "story_points": "L",
+      "use_cases": [
+        "UC-07-01",
+        "UC-07-02",
+        "UC-07-03",
+        "UC-07-04"
+      ]
+    },
+    {
+      "id": "EPIC-08",
+      "title": "Gérer le dossier patient unique et la progression du workflow",
+      "objective": "Consolider toutes les étapes dans un dossier patient unique, permettre la navigation non-linéaire (sauter/reprendre étapes), afficher la progression (anneau + stepper)",
+      "business_value": "Vue holistique du patient, souplesse de workflow, suivi longitudinal possible",
+      "actors": ["Kiné/Expert", "Patient"],
+      "entry_criteria": [
+        "Architecture de stockage définie",
+        "État du workflow modélisé"
+      ],
+      "exit_criteria": [
+        "Dossier patient consolidé (toutes les étapes visibles)",
+        "Navigation non-linéaire fonctionnelle",
+        "Anneau de progression (%) mis à jour en temps réel",
+        "Stepper navigable, états affichés (pending/active/done/skipped)"
+      ],
+      "dependencies": ["EPIC-02"],
+      "priority": "Must Have",
+      "story_points": "M",
+      "use_cases": [
+        "UC-08-01",
+        "UC-08-02",
+        "UC-08-03"
+      ]
+    },
+    {
+      "id": "EPIC-09",
+      "title": "Assurer la conformité RGPD, HDS et la traçabilité",
+      "objective": "Implémenter le recueil de consentement, l'hébergement HDS, le chiffrement, la journalisation des actions, les droits des patients (accès/effacement/portabilité)",
+      "business_value": "Conformité légale, auditabilité clinique, sécurité des données de santé",
+      "actors": ["Admin", "Tous"],
+      "entry_criteria": [
+        "Hébergeur HDS contractualisé",
+        "Modèle de données finalisé"
+      ],
+      "exit_criteria": [
+        "Consentement patient recueilli avant utilisation",
+        "Chiffrement transit + repos actif",
+        "Journal des actions complet",
+        "Droit d'accès/effacement/portabilité opérationnel",
+        "Politique de conservation définie"
+      ],
+      "dependencies": [],
+      "priority": "Must Have",
+      "story_points": "L",
+      "use_cases": [
+        "UC-09-01",
+        "UC-09-02",
+        "UC-09-03",
+        "UC-09-04"
+      ]
+    },
+    {
+      "id": "EPIC-10",
+      "title": "Concevoir l'architecture applicative, UI/UX et design system",
+      "objective": "Définir la stack technique (React + Tailwind + design system), router, state management, intégrations externes (Maia, e-mail, IA, VALD, Vitruve, Stryd)",
+      "business_value": "Fondation technique solide, scalable, maintenable",
+      "actors": ["Tech Architect", "Dev Lead"],
+      "entry_criteria": [
+        "Spécification fonctionnelle complète"
+      ],
+      "exit_criteria": [
+        "Design system codifié (couleurs, typo, composants)",
+        "Architecture API/back-end définie",
+        "Routeur et state management en place",
+        "Intégrations externes planifiées (MVP vs V2)"
+      ],
+      "dependencies": [],
+      "priority": "Must Have",
+      "story_points": "L",
+      "use_cases": [
+        "UC-10-01",
+        "UC-10-02",
+        "UC-10-03"
+      ]
+    }
+  ],
+  "use_cases": [
+    {
+      "id": "UC-01-01",
+      "title": "Sélectionner un patient depuis Maia et lancer une analyse",
+      "epic_id": "EPIC-01",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Kiné authentifié",
+        "Patients Maia disponibles (prochains RDV)"
+      ],
+      "flow_main": [
+        "1. Kiné clique sur 'Lancer une analyse' en accueil",
+        "2. Système affiche le sélecteur de patients (dropdown Maia)",
+        "3. Kiné sélectionne le patient",
+        "4. Système pré-remplit e-mail et date du RDV (depuis Maia)",
+        "5. Kiné valide et crée l'analyse"
+      ],
+      "flow_alternative": [
+        "Pas de patients à venir : afficher message explicatif"
+      ],
+      "flow_error": [
+        "Erreur Maia : afficher toast d'erreur, proposer retry"
+      ],
+      "postconditions": [
+        "Analyse créée (status='created')",
+        "Workflow accède l'étape 1"
+      ],
+      "acceptance_criteria": [
+        "Given un kiné authentifié on the home page, When he clicks 'Lancer une analyse', Then a patient selector appears with upcoming appointments",
+        "Given a patient selected, When email and RDV are pre-filled, Then the kiné can edit the email before sending",
+        "Given an analysis created, When the kiné validates, Then the workflow opens on Step 1"
+      ]
+    },
+    {
+      "id": "UC-01-02",
+      "title": "Envoyer le questionnaire en amont au patient",
+      "epic_id": "EPIC-01",
+      "actor_primary": "Kiné/Expert",
+      "actor_secondary": "Système (e-mail)",
+      "preconditions": [
+        "Analyse créée",
+        "E-mail patient valide"
+      ],
+      "flow_main": [
+        "1. Kiné visualise l'aperçu de l'e-mail",
+        "2. Kiné clique 'Envoyer le questionnaire'",
+        "3. Système génère un lien sécurisé personnel (secureLinkId)",
+        "4. Système envoie l'e-mail via service transactionnel HDS",
+        "5. Statut passe à 'sent'",
+        "6. Confirmation visuelle au kiné"
+      ],
+      "flow_alternative": [
+        "Kiné coche 'Envoyer plus tard' : analyse créée sans envoi"
+      ],
+      "flow_error": [
+        "E-mail invalide : blocage + message",
+        "Service e-mail indisponible : retry avec backoff"
+      ],
+      "postconditions": [
+        "Statut QuestionnaireAmont = 'sent'",
+        "E-mail envoyé (horodaté en journal)",
+        "Lien sécurisé stocké (non devinable, durée limitée)"
+      ],
+      "acceptance_criteria": [
+        "Given an analysis with a valid email, When the kiné sends the questionnaire, Then the email is sent within 5 seconds",
+        "Given the email sent, When the patient receives it, Then it contains a personalized secure link and the questionnaire form",
+        "Given the questionnaire link, When the patient opens it, Then the status updates to 'in_progress' on kiné's side"
+      ]
+    },
+    {
+      "id": "UC-01-03",
+      "title": "Suivre le statut de complétion du questionnaire amont",
+      "epic_id": "EPIC-01",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Questionnaire envoyé"
+      ],
+      "flow_main": [
+        "1. Kiné accède au tableau de patients",
+        "2. Colonne 'Statut' affiche le badge (sent/in_progress/done)",
+        "3. Si complété, badge vert, timeline des jalons affichée",
+        "4. Kiné peut ouvrir l'analyse"
+      ],
+      "flow_alternative": [
+        "Statut 'in_progress' : patient a ouvert le lien et commence",
+        "Statut 'sent' : patient n'a pas encore ouvert le lien"
+      ],
+      "flow_error": [
+        "Webhook d'envoi manqué : afficher statut 'sent' jusqu'à webhook reçu"
+      ],
+      "postconditions": [
+        "Statut visible et à jour en temps quasi-réel"
+      ],
+      "acceptance_criteria": [
+        "Given a questionnaire sent, When the patient opens the link, Then the status updates to 'in_progress' within 10 seconds",
+        "Given the patient submits the questionnaire, When the kiné refreshes, Then the status is 'completed' and Step 1 is prefilled",
+        "Given a completed questionnaire, When the kiné opens the analysis, Then Step 1 displays a green banner with 'Questionnaire rempli en amont'"
+      ]
+    },
+    {
+      "id": "UC-01-04",
+      "title": "Visualiser l'aperçu de l'e-mail et du questionnaire patient",
+      "epic_id": "EPIC-01",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Analyse créée"
+      ],
+      "flow_main": [
+        "1. Deux sections visibles : aperçu e-mail + aperçu questionnaire condensé",
+        "2. Aperçu e-mail : branding, CTA, mention HDS/RGPD",
+        "3. Aperçu questionnaire : les 5 blocs résumés (mobile view)"
+      ],
+      "postconditions": [
+        "Kiné valide avant envoi"
+      ],
+      "acceptance_criteria": [
+        "Given the email preview, When the kiné reviews it, Then all placeholders are filled (patient name, RDV date, secure link)",
+        "Given the questionnaire preview, When the kiné clicks on it, Then a modal shows the full 5-block form as the patient will see it",
+        "Given the preview modal, When the kiné simulates completion, Then he can see what the prefilled Step 1 will look like"
+      ]
+    },
+    {
+      "id": "UC-01-05",
+      "title": "Gérer les erreurs et reprises d'envoi du questionnaire",
+      "epic_id": "EPIC-01",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Envoi questionnaire tentée ou échouée"
+      ],
+      "flow_main": [
+        "1. Si erreur, toast d'erreur explicite",
+        "2. Kiné peut réessayer",
+        "3. Si succès après retry, confirmation"
+      ],
+      "postconditions": [
+        "Statut cohérent après retry"
+      ],
+      "acceptance_criteria": [
+        "Given an email send failure, When the kiné retries, Then the system attempts resend with exponential backoff",
+        "Given a max retry limit exceeded, When the kiné sees the error, Then he can contact support or try again later",
+        "Given a successful resend, When the status is updated, Then the timeline shows both attempts in the journal"
+      ]
+    },
+    {
+      "id": "UC-02-01",
+      "title": "Saisir le questionnaire général avec 5 blocs et logique conditionnelle",
+      "epic_id": "EPIC-02",
+      "actor_primary": "Patient",
+      "actor_secondary": "Kiné/Expert",
+      "preconditions": [
+        "Questionnaire accessible (lien sécurisé ou Étape 1 ouverte)",
+        "Formulaire rendu mobile-first"
+      ],
+      "flow_main": [
+        "1. Patient (ou kiné en séance) accède au formulaire",
+        "2. Bloc 1 (Profil & morphologie) : saisit sexe, âge, taille, poids, club",
+        "3. Bloc 2 (Pratique) : années, volume, spécialité, changements",
+        "4. Bloc 3 (Équipement) : chaussures, indice minimaliste, orthèses",
+        "5. Si orthèses=oui : déplie ancienneté + motif",
+        "6. Bloc 4 (Antécédents) : saisit médical, blessures oui/non",
+        "7. Si blessures=oui : déplie saisie détaillée (zone, date, statut)",
+        "8. Bloc 5 (Attentes) : saisit objectif du patient",
+        "9. Validation et sauvegarde"
+      ],
+      "flow_alternative": [
+        "Sauvegarde progressive : patient quitte et reprend sans perte",
+        "Saisie par kiné : il pose les questions en séance"
+      ],
+      "postconditions": [
+        "Questionnaire sauvegardé (brouillon ou finalisé)",
+        "Profil coureur structuré pour l'IA"
+      ],
+      "acceptance_criteria": [
+        "Given a patient on the questionnaire form, When he selects 'Oui' for orthèses, Then the fields for duration and reason appear",
+        "Given injuries selected as 'Oui', When he enters injury details, Then each injury has zone, date, and status",
+        "Given the patient saves mid-form, When he closes and reopens, Then all data is recovered exactly as saved",
+        "Given the questionnaire completed, When submitted, Then the data is normalized and ready for Step 2 IA"
+      ]
+    },
+    {
+      "id": "UC-02-02",
+      "title": "Valider et soumettre le questionnaire (patient amont)",
+      "epic_id": "EPIC-02",
+      "actor_primary": "Patient",
+      "preconditions": [
+        "Questionnaire rempli (au moins les champs obligatoires)"
+      ],
+      "flow_main": [
+        "1. Patient clique 'Valider mes réponses'",
+        "2. Système vérifie les champs obligatoires",
+        "3. Si validation OK, statut passe à 'completed'",
+        "4. Webhook envoyé au système (met à jour Étape 1 kiné)"
+      ],
+      "flow_error": [
+        "Champs obligatoires manquants : message de validation, focus sur le premier champ"
+      ],
+      "postconditions": [
+        "QuestionnaireAmont.status = 'completed'",
+        "Webhook reçu (statut visible côté kiné)",
+        "Données disponibles pour pré-remplissage Étape 1"
+      ],
+      "acceptance_criteria": [
+        "Given a completed questionnaire, When the patient submits, Then all mandatory fields are validated",
+        "Given a submission with missing mandatory field, When the patient sees the validation error, Then the field is highlighted",
+        "Given a successful submission, When the kiné refreshes, Then the status shows 'Complété' and Step 1 can be opened with prefilled data"
+      ]
+    },
+    {
+      "id": "UC-02-03",
+      "title": "Afficher le questionnaire en version mobile avec responsive",
+      "epic_id": "EPIC-02",
+      "actor_primary": "Patient",
+      "preconditions": [
+        "Questionnaire accessible via mobile (lien sécurisé)"
+      ],
+      "flow_main": [
+        "1. Patient ouvre le lien sur mobile",
+        "2. Formulaire adapté à l'écran (320px+)",
+        "3. Boutons et champs tactiles et dimensionnés pour mobile",
+        "4. Logique conditionnelle fluide (dépliage smooth)"
+      ],
+      "postconditions": [
+        "Expérience mobile fluide, pas de scroll horizontal indésirable"
+      ],
+      "acceptance_criteria": [
+        "Given a mobile viewport (375px), When the questionnaire is loaded, Then all fields are readable and tapable",
+        "Given conditional fields, When the patient toggles a value, Then the new fields appear/disappear smoothly",
+        "Given a mobile keyboard, When the patient types, Then the form doesn't jump, scrolls to focus field"
+      ]
+    },
+    {
+      "id": "UC-02-04",
+      "title": "Pré-remplir l'Étape 1 si questionnaire amont complété",
+      "epic_id": "EPIC-02",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Questionnaire amont status = 'completed'",
+        "Étape 1 ouverte"
+      ],
+      "flow_main": [
+        "1. Kiné ouvre l'analyse",
+        "2. Étape 1 affiche bandeau vert 'Questionnaire rempli en amont'",
+        "3. Tous les champs sont pré-remplis (source='patient_amont')",
+        "4. Étape marquée 'done' (progression +1/9)",
+        "5. Kiné peut éditer si nécessaire"
+      ],
+      "postconditions": [
+        "Étape 1 source = 'patient_amont'",
+        "Progression anneau incrémentée"
+      ],
+      "acceptance_criteria": [
+        "Given a completed upstream questionnaire, When the kiné opens Step 1, Then all fields are prefilled",
+        "Given the prefilled Step 1, When the kiné clicks the Step 1 banner, Then it displays 'Questionnaire rempli en amont'",
+        "Given prefilled data, When the kiné edits a field, Then the change is tracked (source remains 'patient_amont' but with edits)",
+        "Given Step 1 completed amont, When the progress ring is checked, Then it shows 1/9 (11%)"
+      ]
+    },
+    {
+      "id": "UC-03-01",
+      "title": "Générer le pré-profil IA et les questions complémentaires",
+      "epic_id": "EPIC-03",
+      "actor_primary": "Moteur IA",
+      "actor_secondary": "Kiné/Expert",
+      "preconditions": [
+        "Questionnaire (Étape 1) suffisamment complet (seuil à définir avec kiné)",
+        "Moteur IA disponible"
+      ],
+      "flow_main": [
+        "1. Kiné accède l'Étape 2",
+        "2. Système déclenche l'analyse IA du questionnaire",
+        "3. IA génère un pré-profil (synthèse coureur, signaux, axes d'interview)",
+        "4. IA génère une liste de questions complémentaires (contexte, justification)",
+        "5. Encadré IA affiche le pré-profil + liste questions (`.ai-box`)",
+        "6. Kiné voit les actions : garder, éditer, retirer pour chaque question"
+      ],
+      "postconditions": [
+        "ProfilIA généré et affiché",
+        "Questions suggérées attendant la validation kiné"
+      ],
+      "acceptance_criteria": [
+        "Given a completed Step 1, When the kiné accesses Step 2, Then the AI profile is generated within 5 seconds",
+        "Given the suggested questions, When the kiné reviews them, Then each question has a context (justification)",
+        "Given a suggested question, When the kiné removes it, Then it is crossed out or removed from the list"
+      ]
+    },
+    {
+      "id": "UC-03-02",
+      "title": "Éditer, valider et retirer les questions suggérées par l'IA",
+      "epic_id": "EPIC-03",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Pré-profil et questions générées (UC-03-01)"
+      ],
+      "flow_main": [
+        "1. Pour chaque question suggérée :",
+        "   a. Kiné peut éditer le texte (contenteditable)",
+        "   b. Valider (garder la question pour l'interview)",
+        "   c. Retirer (ne pas la poser)",
+        "2. Kiné peut ajouter une question personnalisée (bouton '+Ajouter')",
+        "3. Les questions validées constitueront la trame d'interview"
+      ],
+      "postconditions": [
+        "Trame d'interview finalisée (questions kept + added_by_kine)"
+      ],
+      "acceptance_criteria": [
+        "Given a suggested question, When the kiné clicks 'Edit', Then the text becomes editable",
+        "Given an edited question, When saved, Then the modified text is used in the interview frame",
+        "Given a question to remove, When the kiné clicks 'Remove', Then it is no longer part of the interview",
+        "Given the 'Add question' button, When the kiné adds a custom question, Then it appears in the interview frame"
+      ]
+    },
+    {
+      "id": "UC-03-03",
+      "title": "Finaliser et valider la trame d'interview",
+      "epic_id": "EPIC-03",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Questions éditées/validées/retirées"
+      ],
+      "flow_main": [
+        "1. Kiné clique 'Valider la trame'",
+        "2. Système consolide les questions (kept + added_by_kine)",
+        "3. Étape 2 marquée 'done'",
+        "4. Étape 3 devient 'active' (interview se prépare)"
+      ],
+      "postconditions": [
+        "Étape 2 status = 'done'",
+        "Trame stockée pour l'Étape 3",
+        "Progression mise à jour"
+      ],
+      "acceptance_criteria": [
+        "Given a finalized interview frame, When the kiné validates, Then Step 2 is marked done",
+        "Given the completed Step 2, When the progress ring is checked, Then it shows 2/9 (22%)",
+        "Given Step 2 done, When Step 3 opens, Then the interview frame is loaded and ready to use"
+      ]
+    },
+    {
+      "id": "UC-04-01",
+      "title": "Conduire l'interview assistée avec prise de notes IA",
+      "epic_id": "EPIC-04",
+      "actor_primary": "Kiné/Expert",
+      "actor_secondary": "Moteur IA",
+      "preconditions": [
+        "Trame d'interview finalisée (Étape 2)",
+        "Patient présent en consultation"
+      ],
+      "flow_main": [
+        "1. Kiné ouvre l'Étape 3 (interview)",
+        "2. Trame affichée avec les questions validées",
+        "3. Kiné pose les questions et note les réponses",
+        "4. IA assiste en temps réel (suggestions de relances, enrichissement de notes)",
+        "5. Kiné pose questions additionnelles si besoin",
+        "6. À la fin, les notes sont consolidées"
+      ],
+      "postconditions": [
+        "Interview notée (texte structuré)",
+        "Données prêtes pour diagnostic"
+      ],
+      "acceptance_criteria": [
+        "Given an interview session, When the kiné notes the patient's answers, Then the AI offers follow-up suggestions in real-time",
+        "Given a follow-up suggestion, When the kiné ignores it, Then no error occurs and the interview continues",
+        "Given the interview completed, When the kiné saves the notes, Then they are timestamped and traceable"
+      ]
+    },
+    {
+      "id": "UC-04-02",
+      "title": "Détecter une blessure et déclencher le diagnostic différentiel",
+      "epic_id": "EPIC-04",
+      "actor_primary": "Moteur IA",
+      "actor_secondary": "Kiné/Expert",
+      "preconditions": [
+        "Interview en cours",
+        "Patient mentionne une blessure/douleur"
+      ],
+      "flow_main": [
+        "1. Kiné indique 'Blessure/douleur présente : OUI'",
+        "2. Kiné sélectionne la zone concernée",
+        "3. Système sélectionne la fiche pathologie correspondante",
+        "4. IA génère le diagnostic différentiel (matrice pathologies x signes)",
+        "5. Hypothèses classées par plausibilité, avec signes contributifs",
+        "6. Affichage de la matrice et des hypothèses"
+      ],
+      "postconditions": [
+        "Diagnostic différentiel généré",
+        "Hypothèses attendant validation kiné"
+      ],
+      "acceptance_criteria": [
+        "Given a patient with a knee injury, When the kiné selects the injury zone, Then the corresponding pathology matrix is loaded",
+        "Given the matrix loaded, When the AI generates hypotheses, Then each hypothesis shows its contributing signs",
+        "Given the hypotheses, When ranked, Then the most likely is at the top with highest score"
+      ]
+    },
+    {
+      "id": "UC-04-03",
+      "title": "Valider/invalider les hypothèses du diagnostic différentiel",
+      "epic_id": "EPIC-04",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Diagnostic différentiel généré (UC-04-02)"
+      ],
+      "flow_main": [
+        "1. Kiné examine chaque hypothèse avec ses signes contributifs",
+        "2. Kiné valide ou invalide chaque hypothèse",
+        "3. Hypothèses validées sont conservées",
+        "4. Les invalidées sont archivées (traçabilité)",
+        "5. À la fin, le diagnostic est finalisé"
+      ],
+      "postconditions": [
+        "Hypothèses validées documentées",
+        "Protocole de tests adapté selon résultats"
+      ],
+      "acceptance_criteria": [
+        "Given a hypothesis with contributing signs, When the kiné reviews it, Then he can validate or reject it with a reason",
+        "Given a rejected hypothesis, When saved, Then it is marked as rejected (not deleted) for audit trail",
+        "Given all hypotheses validated, When the kiné proceeds, Then the test protocol is adapted (e.g., specific strength test for hips)"
+      ]
+    },
+    {
+      "id": "UC-04-04",
+      "title": "Adapter le protocole de tests selon le diagnostic",
+      "epic_id": "EPIC-04",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Hypothèses validées"
+      ],
+      "flow_main": [
+        "1. Système affiche le protocole par défaut (Force, Mobilité, Fonctionnel, Vidéo)",
+        "2. Kiné peut désactiver certains tests ou ajouter des tests spécifiques",
+        "3. Exemple : si hanche pathologique, ajouter tests de mobilité hanche",
+        "4. Protocole adapté validé"
+      ],
+      "postconditions": [
+        "Protocole adapté au diagnostic",
+        "Prêt pour les étapes 4-8"
+      ],
+      "acceptance_criteria": [
+        "Given a validated diagnosis of hip pathology, When the protocol is displayed, Then hip-specific mobility tests are suggested",
+        "Given the suggested tests, When the kiné removes or adds tests, Then the protocol is updated",
+        "Given the adapted protocol, When saved, Then it's applied to Steps 4-7"
+      ]
+    },
+    {
+      "id": "UC-05-01",
+      "title": "Importer un fichier de test de force (VALD, Étape 4)",
+      "epic_id": "EPIC-05",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Diagnostic validé (Étape 3)",
+        "Fichier VALD disponible (CSV/FIT)"
+      ],
+      "flow_main": [
+        "1. Kiné ouvre l'Étape 4 (Force)",
+        "2. Zone de dépôt fichier (drag-drop ou sélection)",
+        "3. Kiné dépose/sélectionne le fichier VALD « List Testing »",
+        "4. Système valide le format",
+        "5. Parsing : colonnes Droite / Gauche / Normes extraites",
+        "6. Asymétries calculées (delta % D-G / norme)",
+        "7. Affichage du tableau `dg` et des métriques clés"
+      ],
+      "postconditions": [
+        "Données VALD parsées et stockées",
+        "Métriques affichées"
+      ],
+      "acceptance_criteria": [
+        "Given a VALD CSV file with columns Right/Left/Norm, When uploaded, Then the system parses and displays the metrics within 3 seconds",
+        "Given the metrics displayed, When the kiné checks asymmetry, Then it shows delta % and flag (ok/warn/bad)",
+        "Given a malformed file, When uploaded, Then an error message appears without overwriting existing data"
+      ]
+    },
+    {
+      "id": "UC-05-02",
+      "title": "Importer un fichier de test de mobilité (VALD, Étape 5)",
+      "epic_id": "EPIC-05",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Fichier VALD mobilité (ForceFrame/HumanTrak) disponible"
+      ],
+      "flow_main": [
+        "1. Kiné ouvre l'Étape 5 (Mobilité)",
+        "2. Import similaire à l'Étape 4 (zone de dépôt)",
+        "3. Système parse et affiche amplitudes articulaires (D/G/Normes)",
+        "4. Asymétries calculées et flagées"
+      ],
+      "postconditions": [
+        "Données mobilité stockées"
+      ],
+      "acceptance_criteria": [
+        "Given a VALD mobility file, When uploaded, Then amplitude values (dorsiflexion, hip extension, etc.) are displayed",
+        "Given the mobility data, When asymmetry is calculated, Then it's compared to norms and flagged"
+      ]
+    },
+    {
+      "id": "UC-05-03",
+      "title": "Importer un fichier de test fonctionnel (Vitruve, Étape 6)",
+      "epic_id": "EPIC-05",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Fichier Vitruve (sauts, puissance) disponible"
+      ],
+      "flow_main": [
+        "1. Kiné ouvre l'Étape 6 (Fonctionnel)",
+        "2. Import CSV Vitruve",
+        "3. Système parse : CMJ, single-leg hop (LSI), W/kg, profil charge-vitesse",
+        "4. Affichage tableau et jauges"
+      ],
+      "postconditions": [
+        "Données Vitruve stockées"
+      ],
+      "acceptance_criteria": [
+        "Given a Vitruve CSV file, When uploaded, Then CMJ height, LSI, and power metrics are extracted and displayed"
+      ]
+    },
+    {
+      "id": "UC-05-04",
+      "title": "Importer un fichier de données tapis (Stryd, Étape 7)",
+      "epic_id": "EPIC-05",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Fichier Stryd FIT/CSV disponible"
+      ],
+      "flow_main": [
+        "1. Kiné ouvre l'Étape 7 (Tapis)",
+        "2. Import FIT/CSV Stryd",
+        "3. Système extrait : puissance, cadence, GCT (D/G), oscillation verticale, LSS, longueur foulée",
+        "4. Signature biomécanique consolidée",
+        "5. Affichage des métriques clés"
+      ],
+      "postconditions": [
+        "Signature biomécanique de course stockée",
+        "Données prêtes pour observation vidéo"
+      ],
+      "acceptance_criteria": [
+        "Given a Stryd FIT file, When uploaded, Then power, cadence, GCT, vertical oscillation, LSS are extracted",
+        "Given the Stryd data, When the kiné reviews it, Then he can see running signature metrics (avg power, cadence, etc.)"
+      ]
+    },
+    {
+      "id": "UC-05-05",
+      "title": "Gérer les erreurs et les asymétries dans les imports",
+      "epic_id": "EPIC-05",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Import en cours ou échoué"
+      ],
+      "flow_main": [
+        "1. Format invalide : afficher toast d'erreur clair",
+        "2. Fichier incomplet : proposer de réessayer",
+        "3. Asymétries fortes : flaguer en rouge (flag='bad')",
+        "4. Asymétries modérées : flaguer en orange (flag='warn')",
+        "5. Asymétries normales : flaguer en vert (flag='ok')"
+      ],
+      "postconditions": [
+        "Erreurs gérées, pas d'écrasement de données",
+        "Asymétries visualisées en couleur"
+      ],
+      "acceptance_criteria": [
+        "Given a malformed file, When uploaded, Then the error message is specific (e.g., 'Missing column: Right')",
+        "Given an asymmetry >15%, When displayed, Then it's flagged in red (bad)",
+        "Given a file import error, When the kiné retries, Then the system doesn't duplicate data"
+      ]
+    },
+    {
+      "id": "UC-06-01",
+      "title": "Visionner la vidéo et accéder à la grille d'observation",
+      "epic_id": "EPIC-06",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Vidéo uploadée (étape 7)",
+        "Données Stryd disponibles"
+      ],
+      "flow_main": [
+        "1. Kiné ouvre l'Étape 8 (Vidéo)",
+        "2. Lecteur vidéo affiche la course sur tapis",
+        "3. Sélecteur de vues : frontale / sagittale",
+        "4. Grille d'observation visible en paralelle ou en modal",
+        "5. Kiné peut ajouter des marqueurs temporels et captures"
+      ],
+      "postconditions": [
+        "Vidéo visionnée, grille prête à être remplie"
+      ],
+      "acceptance_criteria": [
+        "Given a video loaded, When the kiné plays it, Then synchronization with Stryd data (cadence overlay optional)",
+        "Given the observation grid, When the kiné selects a view (frontal/sagittal), Then the grid items are appropriate for that view",
+        "Given a time marker, When the kiné adds it, Then it's linked to the video timecode"
+      ]
+    },
+    {
+      "id": "UC-06-02",
+      "title": "Remplir la grille d'observation (10 items, D/G, scoring)",
+      "epic_id": "EPIC-06",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Vidéo visionnée, grille accessible"
+      ],
+      "flow_main": [
+        "1. Pour chaque item (10 total : tronc, bassin, valgus, genou, pied, vertical, tibia, pose de pied, cadence, bruit) :",
+        "   a. Kiné sélectionne la vue (frontale/sagittale ou les deux)",
+        "   b. Saisit l'observation (texte)",
+        "   c. Sélectionne le score (feu : vert/orange/rouge)",
+        "   d. Ajoute un marqueur temporel et une capture si pertinent",
+        "2. Items latéralisés (D/G) : répéter pour chaque côté",
+        "3. Sauvegarde progressive"
+      ],
+      "postconditions": [
+        "Observations complétées et scorées",
+        "Données structurées pour le bilan"
+      ],
+      "acceptance_criteria": [
+        "Given the observation grid, When the kiné scores each item as green/orange/red, Then the score is saved",
+        "Given a lateralized item (e.g., knee flexion), When the kiné selects Right, Then he scores right side; repeating for Left",
+        "Given all items scored, When the kiné saves, Then all data is timestamped and ready for the report"
+      ]
+    },
+    {
+      "id": "UC-06-03",
+      "title": "Synthétiser les observations et finaliser l'Étape 8",
+      "epic_id": "EPIC-06",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Grille remplie"
+      ],
+      "flow_main": [
+        "1. Kiné rédige une synthèse clinique globale (texte libre)",
+        "2. Identifie les asymétries D/G notables",
+        "3. Énumère les points prioritaires pour le bilan",
+        "4. Valide l'Étape 8"
+      ],
+      "postconditions": [
+        "Étape 8 status = 'done'",
+        "Observations consolidées pour étape 9"
+      ],
+      "acceptance_criteria": [
+        "Given a filled grid, When the kiné writes a summary, Then it captures the global running pattern",
+        "Given notable asymmetries, When listed, Then they're flagged for the report priority section",
+        "Given Step 8 validated, When the progress ring updates, Then it shows 8/9 (89%)"
+      ]
+    },
+    {
+      "id": "UC-07-01",
+      "title": "Générer les deux versions du bilan (patient/expert)",
+      "epic_id": "EPIC-07",
+      "actor_primary": "Moteur IA",
+      "preconditions": [
+        "Toutes les étapes 1-8 complétées ou suffisantes",
+        "Moteur IA disponible"
+      ],
+      "flow_main": [
+        "1. Système agrège les données de toutes les étapes",
+        "2. IA génère version synthétique/patient : message clé, jauges, vulgarisation, plan d'action",
+        "3. IA génère version expert/kiné : données brutes, graphiques, justifications techniques",
+        "4. Deux onglets affichés (Patient / Expert)",
+        "5. Bandeau validation kiné : 'L'IA propose, le kiné dispose'"
+      ],
+      "postconditions": [
+        "Deux bilans générés en brouillon",
+        "En attente de validation kiné"
+      ],
+      "acceptance_criteria": [
+        "Given all steps completed, When the kiné opens Step 9, Then both report versions are generated within 10 seconds",
+        "Given the patient report, When displayed, Then key message is prominent, gauges show asymmetries, and action plan is clear",
+        "Given the expert report, When displayed, Then raw metrics, graphs, and technical justifications are visible"
+      ]
+    },
+    {
+      "id": "UC-07-02",
+      "title": "Éditer et valider les bilans avant publication",
+      "epic_id": "EPIC-07",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Bilans générés"
+      ],
+      "flow_main": [
+        "1. Kiné peut éditer les deux versions (texte modifiable dans les champs clés)",
+        "2. Kiné peut ajouter/retirer des recommandations de la bibliothèque",
+        "3. Kiné valide : bouton 'Valider et publier'",
+        "4. Statut passe à 'validated' (version 1)"
+      ],
+      "postconditions": [
+        "Bilan status = 'validated'",
+        "Prêt pour publication"
+      ],
+      "acceptance_criteria": [
+        "Given an editable report section, When the kiné modifies text, Then the change is saved as draft",
+        "Given the report key message, When the kiné edits it, Then the tone remains appropriate for the target audience",
+        "Given all edits complete, When validation button is clicked, Then status updates to 'validated'"
+      ]
+    },
+    {
+      "id": "UC-07-03",
+      "title": "Exporter et publier le bilan en PDF",
+      "epic_id": "EPIC-07",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Bilan validé"
+      ],
+      "flow_main": [
+        "1. Kiné clique 'Exporter en PDF'",
+        "2. Système génère PDF avec les deux versions (ou séparement)",
+        "3. PDF téléchargé ou envoyé",
+        "4. Kiné clique 'Publier au patient'",
+        "5. Version synthétique partagée au patient (version expert reste confidentielle)"
+      ],
+      "postconditions": [
+        "PDF généré",
+        "Bilan status = 'published'",
+        "Patient reçoit notification + lien d'accès à sa version"
+      ],
+      "acceptance_criteria": [
+        "Given a validated report, When export PDF is triggered, Then a PDF file is generated within 5 seconds",
+        "Given the PDF, When opened, Then formatting, images, and colors are preserved",
+        "Given publication, When the patient receives notification, Then the link provides access to the synthetic version only"
+      ]
+    },
+    {
+      "id": "UC-07-04",
+      "title": "Tracer les versions du bilan et l'historique d'édition",
+      "epic_id": "EPIC-07",
+      "actor_primary": "Système (traçabilité)",
+      "preconditions": [
+        "Bilan généré et édité"
+      ],
+      "flow_main": [
+        "1. Chaque génération crée une version (v1, v2, etc.)",
+        "2. Chaque édition est horodatée et tracée",
+        "3. Historique visible dans le dossier patient",
+        "4. Comparaison entre versions possible (pour suivi longitudinal)"
+      ],
+      "postconditions": [
+        "Versionnage et audit trail complets"
+      ],
+      "acceptance_criteria": [
+        "Given a report generated and edited, When the version history is viewed, Then all versions are listed with timestamps",
+        "Given a previous version, When selected, Then the kiné can see what changed"
+      ]
+    },
+    {
+      "id": "UC-08-01",
+      "title": "Créer et consulter le dossier patient unique",
+      "epic_id": "EPIC-08",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Patient créé"
+      ],
+      "flow_main": [
+        "1. Dossier patient agrège toutes les étapes et historique",
+        "2. Sidebar affiche fiche patient (initiales, nom, âge, discipline, volume)",
+        "3. Anneau de progression (%) mis à jour en temps réel",
+        "4. Stepper 9 étapes avec états (pending/active/done/skipped)",
+        "5. Clic sur étape → accès direct"
+      ],
+      "postconditions": [
+        "Dossier patient consulté, navigation fluide"
+      ],
+      "acceptance_criteria": [
+        "Given a patient folder open, When the kiné views the sidebar, Then all patient info and current step are visible",
+        "Given Step 3 done and Step 5 pending, When the stepper is viewed, Then Step 3 is marked done, Step 5 is not yet active",
+        "Given a skipped step, When the stepper is checked, Then it's visually distinct from pending/active/done"
+      ]
+    },
+    {
+      "id": "UC-08-02",
+      "title": "Naviguer entre étapes (non-linéaire) et modifier le statut d'avancement",
+      "epic_id": "EPIC-08",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Dossier patient ouvert"
+      ],
+      "flow_main": [
+        "1. Kiné peut cliquer sur n'importe quelle étape du stepper",
+        "2. Étape ouvre (pas de validation stricte de l'ordre)",
+        "3. Kiné peut compléter une étape (statut='done')",
+        "4. Progression mise à jour automatiquement",
+        "5. Kiné peut revenir à une étape antérieure et modifier"
+      ],
+      "postconditions": [
+        "Navigation flexible, statuts à jour"
+      ],
+      "acceptance_criteria": [
+        "Given Step 3 done, When the kiné clicks on Step 5, Then Step 5 opens (not Step 4)",
+        "Given an earlier step modified, When saved, Then the progress ring updates accordingly",
+        "Given Step 6 skipped, When the kiné completes Step 5, Then progression jumps to Step 7 (if next unaccessed step)"
+      ]
+    },
+    {
+      "id": "UC-08-03",
+      "title": "Afficher l'anneau de progression et le stepper interactif",
+      "epic_id": "EPIC-08",
+      "actor_primary": "Kiné/Expert",
+      "preconditions": [
+        "Dossier patient ouvert"
+      ],
+      "flow_main": [
+        "1. Anneau de progression SVG affiche % (0-100)",
+        "2. Texte au centre : 'N/9' (nombre d'étapes complétées)",
+        "3. Stepper affiche 9 cercles avec états visuels (couleurs, icônes)",
+        "4. Clic sur cercle → accès à l'étape"
+      ],
+      "postconditions": [
+        "Progression visuelle claire et interactive"
+      ],
+      "acceptance_criteria": [
+        "Given 3 steps completed, When the progress ring is checked, Then it shows 3/9 (33%) with 1/3 fill",
+        "Given a step clicked on stepper, When the panel opens, Then the ring and stepper sync"
+      ]
+    },
+    {
+      "id": "UC-09-01",
+      "title": "Recueillir et valider le consentement patient (RGPD)",
+      "epic_id": "EPIC-09",
+      "actor_primary": "Système",
+      "preconditions": [
+        "Patient crée/accède à l'application"
+      ],
+      "flow_main": [
+        "1. Au premier accès, afficher modale de consentement",
+        "2. Texte explicite : données de santé, hébergement HDS, durée conservation",
+        "3. Patient coche 'J'accepte'",
+        "4. Consentement horodaté et stocké dans la base"
+      ],
+      "postconditions": [
+        "Consentement recueilli et tracé"
+      ],
+      "acceptance_criteria": [
+        "Given a patient accessing the platform for the first time, When the consent modal appears, Then it's clear and unambiguous",
+        "Given consent accepted, When the patient proceeds, Then data is stored (no data processed before consent)",
+        "Given consent denied, When the patient closes the modal, Then no analysis can proceed"
+      ]
+    },
+    {
+      "id": "UC-09-02",
+      "title": "Journaliser toutes les actions et décisions cliniques",
+      "epic_id": "EPIC-09",
+      "actor_primary": "Système (traçabilité)",
+      "preconditions": [
+        "Analyse en cours"
+      ],
+      "flow_main": [
+        "1. Chaque action significative (import, validation, édition, publication) est loggée",
+        "2. Journal inclut : who (acteur), what (action), when (timestamp), payload (données)",
+        "3. Journal accessible en consultation pour audit"
+      ],
+      "postconditions": [
+        "Journal complet pour traçabilité clinique"
+      ],
+      "acceptance_criteria": [
+        "Given a kiné validates a hypothesis, When the action is logged, Then the journal shows 'kiné X validated hypothesis Y at [timestamp]'",
+        "Given a file imported, When the journal is checked, Then filename, upload time, and parsed metrics are recorded"
+      ]
+    },
+    {
+      "id": "UC-09-03",
+      "title": "Implémenter le chiffrement des données (transit + repos)",
+      "epic_id": "EPIC-09",
+      "actor_primary": "Infrastructure",
+      "preconditions": [
+        "Hébergeur HDS contractualisé"
+      ],
+      "flow_main": [
+        "1. Transit : TLS 1.3+ sur tous les endpoints",
+        "2. Repos : données base et fichiers chiffrés",
+        "3. Gestion des clés : rotation, backup sécurisé"
+      ],
+      "postconditions": [
+        "Données patient protégées"
+      ],
+      "acceptance_criteria": [
+        "Given a data transmission, When encrypted, Then TLS is enforced (no plaintext HTTP)",
+        "Given data at rest, When checked, Then encryption is confirmed (not readable without key)"
+      ]
+    },
+    {
+      "id": "UC-09-04",
+      "title": "Gérer les droits RGPD (accès, rectification, effacement, portabilité)",
+      "epic_id": "EPIC-09",
+      "actor_primary": "Admin / Système",
+      "preconditions": [
+        "Patient demande son droit"
+      ],
+      "flow_main": [
+        "1. Patient/responsable demande accès à ses données",
+        "2. Système exporte les données au format lisible (JSON, PDF)",
+        "3. Patient peut rectifier certains champs (questionnaire, contact)",
+        "4. Patient peut demander suppression : données anonymisées/archivées selon politique",
+        "5. Patient peut exporter (portabilité) : dossier complet en JSON/PDF"
+      ],
+      "postconditions": [
+        "Droits RGPD opérationnels"
+      ],
+      "acceptance_criteria": [
+        "Given an access request, When the system processes it, Then all patient data is exported within 30 days",
+        "Given a rectification, When a field is updated, Then the change is logged and previous version archived",
+        "Given a deletion request, When processed, Then identifiable data is removed (retention policy applied)"
+      ]
+    },
+    {
+      "id": "UC-10-01",
+      "title": "Concevoir l'architecture technique (stack, routeur, state)",
+      "epic_id": "EPIC-10",
+      "actor_primary": "Tech Architect",
+      "preconditions": [
+        "Spécification fonctionnelle validée"
+      ],
+      "flow_main": [
+        "1. Stack définie : React 18 + TypeScript + Vite + Tailwind",
+        "2. Routeur : React Router v6 ou Remix",
+        "3. State : Zustand ou Redux Toolkit",
+        "4. Data fetching : TanStack Query",
+        "5. Back-end : Node NestJS ou Python FastAPI",
+        "6. Database : PostgreSQL (HDS France)",
+        "7. Storage : S3/Minio chiffré"
+      ],
+      "postconditions": [
+        "Architecture validée et documentée"
+      ],
+      "acceptance_criteria": [
+        "Given the tech stack chosen, When documentation is reviewed, Then all layers (UI, state, API, DB) are clear"
+      ]
+    },
+    {
+      "id": "UC-10-02",
+      "title": "Implémenter le design system et composants réutilisables",
+      "epic_id": "EPIC-10",
+      "actor_primary": "Dev Lead",
+      "preconditions": [
+        "Design system spec validé (02-design-system.md)"
+      ],
+      "flow_main": [
+        "1. Tokens CSS (couleurs, typo, espacements, ombres)",
+        "2. Composants : Button, Badge, Card, Input, Modal, Toast, Gauge, Table, etc.",
+        "3. Storybook pour documentation et tests visuels",
+        "4. Tests unitaires pour composants critiques"
+      ],
+      "postconditions": [
+        "Design system opérationnel et maintenable"
+      ],
+      "acceptance_criteria": [
+        "Given the design tokens, When a component is built, Then all visual properties match the spec",
+        "Given a Storybook, When a story is viewed, Then component variants are documented"
+      ]
+    },
+    {
+      "id": "UC-10-03",
+      "title": "Planifier les intégrations externes (Maia, e-mail, IA, capteurs)",
+      "epic_id": "EPIC-10",
+      "actor_primary": "Tech Architect",
+      "preconditions": [
+        "Architecture core définie"
+      ],
+      "flow_main": [
+        "1. Maia : sync dossier patient (API ou export)",
+        "2. E-mail : service transactionnel HDS-compatible",
+        "3. Moteur IA : déploiement HDS ou prestataire conforme",
+        "4. VALD, Vitruve, Stryd : import fichier MVP (API V2)",
+        "5. Adaptatrices de parsing par source"
+      ],
+      "postconditions": [
+        "Intégrations planifiées et roadmap MVP/V2 claire"
+      ],
+      "acceptance_criteria": [
+        "Given external integrations, When planned, Then MVP scope is clear (file import) and V2 APIs are identified"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "TASK-01-01-01",
+      "title": "API endpoint : GET /maia/patients (récupérer patients à venir)",
+      "use_case_id": "UC-01-01",
+      "description": "Intégration avec Maia pour lister les patients ayant un RDV à venir",
+      "story_points": "S",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Endpoint implémenté et retourne liste patients avec nom, date RDV, email",
+        "Authentification back-end validée",
+        "Tests unitaires (happy path + erreur Maia)"
+      ]
+    },
+    {
+      "id": "TASK-01-01-02",
+      "title": "Composant UI : PatientSelector (dropdown Maia)",
+      "use_case_id": "UC-01-01",
+      "description": "Sélecteur dropdown affichant liste patients avec date RDV et e-mail pré-rempli",
+      "story_points": "S",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Dropdown fonctionne (affiche patients, sélection)",
+        "E-mail pré-rempli édit able",
+        "Date RDV affichée en lecture seule",
+        "Tests visuels (Storybook)"
+      ]
+    },
+    {
+      "id": "TASK-01-02-01",
+      "title": "API endpoint : POST /analyses (créer une analyse)",
+      "use_case_id": "UC-01-01",
+      "description": "Créer une AnalyseDeCourse pour un patient donné",
+      "story_points": "S",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Endpoint accepte patientId, email, rdv",
+        "AnalyseDeCourse créée en DB avec statut 'created'",
+        "Retourne analyseId pour navigation"
+      ]
+    },
+    {
+      "id": "TASK-01-03-01",
+      "title": "API endpoint : POST /analyses/:id/questionnaire/send (envoyer questionnaire)",
+      "use_case_id": "UC-01-02",
+      "description": "Générer lien sécurisé et envoyer e-mail via prestataire HDS",
+      "story_points": "M",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Lien sécurisé généré (token non devinable, expirable)",
+        "E-mail envoyé via prestataire conforme HDS",
+        "QuestionnaireAmont.status = 'sent', sentAt horodaté",
+        "Logs tracés (journal)"
+      ]
+    },
+    {
+      "id": "TASK-01-03-02",
+      "title": "Template d'e-mail patient (branding PhysioRunningLab)",
+      "use_case_id": "UC-01-02",
+      "description": "Template HTML e-mail avec branding, lien sécurisé, mention HDS/RGPD",
+      "story_points": "S",
+      "assignee_role": "Frontend/Email Dev",
+      "definition_of_done": [
+        "Template HTML validé (responsive, branded)",
+        "Placeholders remplacés (nom patient, RDV, lien)",
+        "Mention RGPD/HDS clair",
+        "Testé en Litmus/MJML"
+      ]
+    },
+    {
+      "id": "TASK-01-04-01",
+      "title": "Composant UI : EmailPreview et QuestionnairePreview",
+      "use_case_id": "UC-01-04",
+      "description": "Aperçu de l'e-mail et du questionnaire condensé (5 blocs) avant envoi",
+      "story_points": "M",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "EmailPreview affiche le contenu exact (template rendu)",
+        "QuestionnairePreview modale affichant formulaire mobile",
+        "Bouton 'Fermer' et 'Valider' (sim pour démo)"
+      ]
+    },
+    {
+      "id": "TASK-02-01-01",
+      "title": "Modèle de données & schéma DB : Questionnaire (Étape 1)",
+      "use_case_id": "UC-02-01",
+      "description": "Table/collection pour les 5 blocs du questionnaire avec logique conditionnelle",
+      "story_points": "S",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Schéma incluant tous les champs (5 blocs)",
+        "Validation côté BD (obligatoires/optionnels)",
+        "Index sur patientId, analyseId"
+      ]
+    },
+    {
+      "id": "TASK-02-01-02",
+      "title": "Composant form : QuestionnaireForm (5 blocs + logique conditionnelle)",
+      "use_case_id": "UC-02-01",
+      "description": "Formulaire React des 5 blocs avec champs typés, sauvegarde progressive, logique conditionnelle (orthèses, blessures)",
+      "story_points": "L",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Tous les 5 blocs affichés et fonctionnels",
+        "Logique conditionnelle pour orthèses (affiche si oui)",
+        "Logique conditionnelle pour blessures (saisie détaillée)",
+        "Sauvegarde progressive (localStorage ou API)",
+        "Validation côté client (champs obligatoires)"
+      ]
+    },
+    {
+      "id": "TASK-02-02-01",
+      "title": "API endpoint : POST /public/q/:secureLinkId/submit (valider questionnaire)",
+      "use_case_id": "UC-02-02",
+      "description": "Endpoint public pour valider le questionnaire patient (pas d'auth, juste lien sécurisé)",
+      "story_points": "S",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Endpoint accepte secureLinkId et données questionnaire",
+        "Valide le lien (non expiré, existe)",
+        "Stocke les données, QuestionnaireAmont.status = 'completed'",
+        "Envoie webhook/événement (met à jour UI kiné)"
+      ]
+    },
+    {
+      "id": "TASK-02-03-01",
+      "title": "Responsive design : QuestionnaireForm mobile (320px+)",
+      "use_case_id": "UC-02-03",
+      "description": "Tests responsive et ajustements CSS pour mobile (breakpoints, touches, clavier)",
+      "story_points": "S",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Formulaire rendable sur 320px (mobile petit)",
+        "Pas de scroll horizontal",
+        "Boutons tactiles (min 48px)",
+        "Clavier non masque inputs"
+      ]
+    },
+    {
+      "id": "TASK-02-04-01",
+      "title": "Logique pré-remplissage Step 1 si questionnaire amont complété",
+      "use_case_id": "UC-02-04",
+      "description": "Si QuestionnaireAmont.status='completed', Step 1 charge les réponses",
+      "story_points": "S",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Champs Step 1 pré-remplis depuis questionnaire amont",
+        "Bandeau vert affiché ('Questionnaire rempli en amont')",
+        "Progression anneau mise à jour (1/9 = 11%)",
+        "Step 1 marquée 'done' en stepper"
+      ]
+    },
+    {
+      "id": "TASK-03-01-01",
+      "title": "Intégration moteur IA : appel profile & questions (Étape 2)",
+      "use_case_id": "UC-03-01",
+      "description": "API call au moteur IA pour générer pré-profil et questions complémentaires",
+      "story_points": "M",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "API endpoint POST /analyses/:id/ia/profile déclenche génération",
+        "Vérifie que questionnaire (étape 1) suffisamment complet",
+        "Retourne ProfilIA (preProfile + suggestedQuestions)",
+        "Timeout et error handling"
+      ]
+    },
+    {
+      "id": "TASK-03-01-02",
+      "title": "Composant UI : Step2 (affichage pré-profil + questions éditables)",
+      "use_case_id": "UC-03-01",
+      "description": "Panneau Étape 2 affichant pré-profil en encadré IA et liste questions avec actions",
+      "story_points": "M",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Pré-profil affiché dans `.ai-box` (styled distinctement)",
+        "Questions listées avec contexte (justification)",
+        "Boutons garder/éditer/retirer visibles et fonctionnels",
+        "Contenteditable pour édition"
+      ]
+    },
+    {
+      "id": "TASK-03-02-01",
+      "title": "Logique édition/validation/retrait questions (UC-03-02)",
+      "use_case_id": "UC-03-02",
+      "description": "État (state) pour tracker questions kept/removed/added_by_kine",
+      "story_points": "S",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "État interne pour chaque question (state, text)",
+        "Actions edit/keep/remove mettent à jour l'état",
+        "Bouton '+Ajouter question' insère nouvelle question"
+      ]
+    },
+    {
+      "id": "TASK-03-03-01",
+      "title": "API endpoint : PUT /analyses/:id/ia/profile (valider trame)",
+      "use_case_id": "UC-03-03",
+      "description": "Valider et sauvegarder la trame d'interview finalisée",
+      "story_points": "S",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Endpoint accepte liste questions (kept + added_by_kine)",
+        "ProfilIA stocké, Step 2 status = 'done'",
+        "Progression mise à jour"
+      ]
+    },
+    {
+      "id": "TASK-04-01-01",
+      "title": "Composant UI : Step3 (interview + prise de notes)",
+      "use_case_id": "UC-04-01",
+      "description": "Panneau interview affichant trame questions et zone de notes",
+      "story_points": "M",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Trame questions affichée (issues de Step 2)",
+        "Zone de notes (textarea) pour chaque question ou notes libres",
+        "Suggestions IA inline (optionnel pour MVP)"
+      ]
+    },
+    {
+      "id": "TASK-04-02-01",
+      "title": "Détection blessure + sélection zone (branche diagnostic)",
+      "use_case_id": "UC-04-02",
+      "description": "Champ booléen 'Blessure présente' + sélecteur zone, déclenche diagnostic différentiel",
+      "story_points": "S",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Champ booléen dans Step 3",
+        "Si OUI, sélecteur zone (genou, cheville, etc.)",
+        "Sélection zone déclenche appel API diagnostic"
+      ]
+    },
+    {
+      "id": "TASK-04-02-02",
+      "title": "API endpoint : POST /analyses/:id/ia/diagnostic (générer diagnostic différentiel)",
+      "use_case_id": "UC-04-02",
+      "description": "IA croise signes avec matrice pathologies (fiche), retourne hypothèses classées",
+      "story_points": "L",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Endpoint accepte zone + signes recueillis (histoire + examen)",
+        "Charge fiche pathologie correspondante",
+        "IA croise signes x pathologies (RAG sur base connaissances)",
+        "Retourne liste hypothèses classées (score, signes contributifs)"
+      ]
+    },
+    {
+      "id": "TASK-04-03-01",
+      "title": "Composant UI : DiagnosticMatrix + Hypotheses (affichage + validation)",
+      "use_case_id": "UC-04-03",
+      "description": "Affiche matrice diagnostic (lignes signes, colonnes pathologies, pondérations) et hypothèses classées avec boutons valider/invalider",
+      "story_points": "M",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Matrice rendue HTML (table avec couleurs pondérations)",
+        "Hypothèses listées avec score et signes contributifs",
+        "Boutons valider/invalider fonctionnels",
+        "Styling code couleurs (vert/orange/rouge)"
+      ]
+    },
+    {
+      "id": "TASK-04-04-01",
+      "title": "Adaptation protocole tests selon diagnostic validé",
+      "use_case_id": "UC-04-04",
+      "description": "Selon hypothèses validées, proposer tests spécifiques (ex. mobilité hanche si hip pathology)",
+      "story_points": "S",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Logique mapping diagnostic → protocole tests",
+        "API retourne protocole adapté",
+        "Stocké dans AnalyseDeCourse"
+      ]
+    },
+    {
+      "id": "TASK-05-01-01",
+      "title": "Composant UI : FileImporter générique (drag-drop, validation)",
+      "use_case_id": "UC-05-01",
+      "description": "Zone de dépôt réutilisable pour tous les imports (VALD, Vitruve, Stryd)",
+      "story_points": "M",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Drag-drop zone visible et stylée",
+        "Affiche fichier sélectionné (nom, taille)",
+        "Loading spinner pendant upload",
+        "Toast succès ou erreur"
+      ]
+    },
+    {
+      "id": "TASK-05-01-02",
+      "title": "Parser CSV/FIT VALD et adapter pour force (Étape 4)",
+      "use_case_id": "UC-05-01",
+      "description": "Adapter VALD 'List Testing' CSV → schema MetricDG, calculer asymétries",
+      "story_points": "M",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Parser VALD CSV (colonnes Right/Left/Norm)",
+        "Extraction métriques forces (quadriceps, ischios, etc.)",
+        "Calcul asymétries (delta % D-G)",
+        "Flags (ok/warn/bad) selon seuils"
+      ]
+    },
+    {
+      "id": "TASK-05-01-03",
+      "title": "API endpoint : POST /analyses/:id/imports (upload et parse)",
+      "use_case_id": "UC-05-01",
+      "description": "Endpoint multipart pour upload fichier, parse, stocke, retourne métriques",
+      "story_points": "S",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Endpoint accepte multipart file + step_id + source",
+        "Appelle parser adapté (valdAdapter, vitruveAdapter, etc.)",
+        "Stocke ImportFichier en DB",
+        "Retourne parsedMetrics pour affichage UI"
+      ]
+    },
+    {
+      "id": "TASK-05-01-04",
+      "title": "Composant UI : affichage métriques D/G/Normes (Step 4)",
+      "use_case_id": "UC-05-01",
+      "description": "Tableau et jauges affichant forces avec code couleur asymétrie",
+      "story_points": "S",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Tableau colonnes Droite/Gauche/Norme/Asymétrie",
+        "Asymétrie flagée en couleur (`.asym.ok/warn/bad`)",
+        "Jauges optionnelles pour visualisation"
+      ]
+    },
+    {
+      "id": "TASK-05-02-01",
+      "title": "Parser CSV/FIT VALD et adapter pour mobilité (Étape 5)",
+      "use_case_id": "UC-05-02",
+      "description": "Adapter VALD ForceFrame/HumanTrak CSV → schema MetricDG",
+      "story_points": "S",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Parser amplitudes (dorsiflexion, hip extension, etc.)",
+        "Calcul asymétries"
+      ]
+    },
+    {
+      "id": "TASK-05-03-01",
+      "title": "Parser CSV Vitruve et adapter pour fonctionnel (Étape 6)",
+      "use_case_id": "UC-05-03",
+      "description": "Adapter Vitruve CSV → CMJ, LSI, W/kg",
+      "story_points": "S",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Parser CSV (CMJ height, single-leg hop, power)",
+        "Affichage lisible"
+      ]
+    },
+    {
+      "id": "TASK-05-04-01",
+      "title": "Parser FIT/CSV Stryd et adapter signature biomécanique (Étape 7)",
+      "use_case_id": "UC-05-04",
+      "description": "Adapter Stryd FIT → puissance, cadence, GCT D/G, oscillation, LSS, stride_length",
+      "story_points": "M",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Parser Stryd FIT (ou CSV export)",
+        "Extraction puissance, cadence, GCT, oscillation, LSS, stride_length",
+        "Agrégation moyennes/min/max"
+      ]
+    },
+    {
+      "id": "TASK-05-05-01",
+      "title": "Gestion d'erreur et retry import",
+      "use_case_id": "UC-05-05",
+      "description": "Toast d'erreur spécifique, pas d'écrasement données, retry possible",
+      "story_points": "S",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Message d'erreur clair (ex. 'Missing column: Right')",
+        "Données précédentes intactes",
+        "Bouton retry visible"
+      ]
+    },
+    {
+      "id": "TASK-06-01-01",
+      "title": "Upload vidéo et stockage chiffré",
+      "use_case_id": "UC-06-01",
+      "description": "Endpoint pour upload vidéo tapis (stockage S3/Minio chiffré)",
+      "story_points": "S",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Upload multipart vidéo accepté",
+        "Stockage chiffré",
+        "URL signée/temporaire retournée"
+      ]
+    },
+    {
+      "id": "TASK-06-01-02",
+      "title": "Lecteur vidéo et sélecteur vues (frontale/sagittale)",
+      "use_case_id": "UC-06-01",
+      "description": "Player HTML5 + toggles pour sélectionner vue",
+      "story_points": "S",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Player jouable, contrôles visibles",
+        "Toggles frontale/sagittale",
+        "Pause/play/scrub fluide"
+      ]
+    },
+    {
+      "id": "TASK-06-02-01",
+      "title": "Composant UI : grille observation (10 items, D/G, scoring feu)",
+      "use_case_id": "UC-06-02",
+      "description": "Grille interactive : pour chaque item, saisie observation + score (feu vert/orange/rouge)",
+      "story_points": "M",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "10 items affichés (ou groupés par catégories)",
+        "Champ observation (textarea)",
+        "Boutons de score (feu vert/orange/rouge = `.scale` buttons)",
+        "Latéralisé D/G pour items pertinents",
+        "Marqueur temporel (input temps) optionnel",
+        "Capture (upload image) optionnel"
+      ]
+    },
+    {
+      "id": "TASK-06-03-01",
+      "title": "Synthèse observations et finalisation Step 8",
+      "use_case_id": "UC-06-03",
+      "description": "Textarea pour synthèse clinique + validation Step 8",
+      "story_points": "S",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Synthèse sauvegardée",
+        "Bouton validation Step 8"
+      ]
+    },
+    {
+      "id": "TASK-07-01-01",
+      "title": "API endpoint : POST /analyses/:id/report/generate (générer bilans)",
+      "use_case_id": "UC-07-01",
+      "description": "Agréger étapes 1-8, appeler IA pour générer 2 versions bilan",
+      "story_points": "L",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Endpoint agrège toutes les données patient",
+        "Appelle moteur IA avec prompt spécifique (patient vs expert)",
+        "Retourne Bilan avec patientReport + expertReport"
+      ]
+    },
+    {
+      "id": "TASK-07-01-02",
+      "title": "Composant UI : Step9 (onglets patient/expert, affichage bilans)",
+      "use_case_id": "UC-07-01",
+      "description": "Panneau Step 9 avec onglets Patient/Expert, affiche les deux versions côte à côte ou alternées",
+      "story_points": "M",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Onglets Patient/Expert fonctionnels (`switchRep`)",
+        "Version patient : message clé prominent, jauges, vulgarisation",
+        "Version expert : données brutes, barres D/G vs normes, justifications"
+      ]
+    },
+    {
+      "id": "TASK-07-02-01",
+      "title": "Édition texte et recommandations (éditable dans Step 9)",
+      "use_case_id": "UC-07-02",
+      "description": "Rendre éditable certains champs du bilan (message clé, sections texte), ajouter recommandations de la bibliothèque",
+      "story_points": "M",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Champs clés éditable (contenteditable ou input)",
+        "Bibliothèque de recommandations : sélecteur, ajout/suppression",
+        "Sauvegarde brouillon"
+      ]
+    },
+    {
+      "id": "TASK-07-03-01",
+      "title": "API endpoint : POST /analyses/:id/report/pdf (générer PDF)",
+      "use_case_id": "UC-07-03",
+      "description": "Générer PDF à partir des bilans (library puppeteer ou reportlab)",
+      "story_points": "M",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Endpoint génère PDF (patient + expert ou séparement)",
+        "PDF retourne ou envoyé par email"
+      ]
+    },
+    {
+      "id": "TASK-07-03-02",
+      "title": "API endpoint : POST /analyses/:id/report/publish (publier au patient)",
+      "use_case_id": "UC-07-03",
+      "description": "Changer status à 'published', envoyer notification patient avec lien d'accès",
+      "story_points": "S",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Endpoint change status à 'published'",
+        "Envoie email au patient avec lien d'accès (version synthétique)",
+        "Lien sécurisé (pas l'expert)"
+      ]
+    },
+    {
+      "id": "TASK-07-04-01",
+      "title": "Versionnage bilan et journal d'édition",
+      "use_case_id": "UC-07-04",
+      "description": "Chaque génération/édition incrémente version, trace les changements",
+      "story_points": "S",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Champ version dans Bilan (v1, v2, etc.)",
+        "Historique versions accessible",
+        "Comparaison avant/après possible"
+      ]
+    },
+    {
+      "id": "TASK-08-01-01",
+      "title": "Modèle de données AnalyseDeCourse (agrégat racine)",
+      "use_case_id": "UC-08-01",
+      "description": "Schéma DB pour AnalyseDeCourse (patientId, steps[], status, progress)",
+      "story_points": "S",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Table AnalyseDeCourse avec relations aux 9 étapes",
+        "Champ steps[] enregistrant status de chaque étape",
+        "Champ progress% calculé"
+      ]
+    },
+    {
+      "id": "TASK-08-01-02",
+      "title": "Composant UI : Sidebar patient + anneau progression",
+      "use_case_id": "UC-08-01",
+      "description": "Sidebar gauche affichant fiche patient, anneau SVG et stepper 9 étapes",
+      "story_points": "M",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Fiche patient (initiales, nom, âge, discipline, volume)",
+        "Anneau SVG de progression (0-100%) + texte N/9",
+        "Stepper avec 9 cercles (états visuels)"
+      ]
+    },
+    {
+      "id": "TASK-08-02-01",
+      "title": "Navigation non-linéaire (clic étape → accès direct)",
+      "use_case_id": "UC-08-02",
+      "description": "Clic sur étape du stepper ouvre son panneau (pas de validation stricte de l'ordre)",
+      "story_points": "S",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Clic sur cercle stepper change la panneau affichée",
+        "URL mise à jour (router)",
+        "État de l'étape en localStorage/state"
+      ]
+    },
+    {
+      "id": "TASK-08-03-01",
+      "title": "Mise à jour anneau et stepper en temps réel",
+      "use_case_id": "UC-08-03",
+      "description": "À chaque complétion d'étape, anneau et stepper se mettent à jour",
+      "story_points": "S",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Anneau remplie selon % progressionn",
+        "Cercles stepper changent couleur (pending/active/done/skipped)",
+        "Animation fluide"
+      ]
+    },
+    {
+      "id": "TASK-09-01-01",
+      "title": "Modale consentement (RGPD) au premier accès",
+      "use_case_id": "UC-09-01",
+      "description": "Modale affichant consentement patient, horodatage, stockage en DB",
+      "story_points": "S",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Modale affichée au premier accès",
+        "Texte clair (données santé, HDS, conservation)",
+        "Checkbox + bouton 'J'accepte'",
+        "Sans acceptation, pas d'accès aux données"
+      ]
+    },
+    {
+      "id": "TASK-09-01-02",
+      "title": "API endpoint : POST /consents (enregistrer consentement)",
+      "use_case_id": "UC-09-01",
+      "description": "Stocker le consentement patient (granted, timestamp)",
+      "story_points": "S",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Endpoint accepte patientId, granted, scope",
+        "Stocke en DB, horodaté"
+      ]
+    },
+    {
+      "id": "TASK-09-02-01",
+      "title": "Implémentation journal d'actions (JournalAction)",
+      "use_case_id": "UC-09-02",
+      "description": "Table/collection pour tracer qui/quoi/quand pour toutes actions significatives",
+      "story_points": "M",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "Schéma JournalAction (analyseId, actor, action, payload, timestamp)",
+        "Loggé automatiquement pour import, validation, édition, publication",
+        "Query accessible pour audit"
+      ]
+    },
+    {
+      "id": "TASK-09-03-01",
+      "title": "Chiffrement TLS 1.3+ (transit)",
+      "use_case_id": "UC-09-03",
+      "description": "Configurer HTTPS partout (Nginx/ALB), forcer TLS 1.3+",
+      "story_points": "S",
+      "assignee_role": "DevOps/Infra",
+      "definition_of_done": [
+        "Tous les endpoints en HTTPS",
+        "TLS 1.3+ configuré",
+        "Certificat valide (Let's Encrypt ou CA interne)"
+      ]
+    },
+    {
+      "id": "TASK-09-03-02",
+      "title": "Chiffrement données au repos (DB + fichiers)",
+      "use_case_id": "UC-09-03",
+      "description": "PostgreSQL chiffré, S3/Minio avec encryption, gestion clés",
+      "story_points": "M",
+      "assignee_role": "DevOps/Infra",
+      "definition_of_done": [
+        "PostgreSQL en transparent encryption ou application-level",
+        "S3/Minio encryption at rest activée",
+        "Clés gérées (rotation, backup sécurisé)"
+      ]
+    },
+    {
+      "id": "TASK-09-04-01",
+      "title": "API endpoints RGPD (accès, rectification, effacement, portabilité)",
+      "use_case_id": "UC-09-04",
+      "description": "Endpoints pour exercer droits RGPD",
+      "story_points": "L",
+      "assignee_role": "Backend Dev",
+      "definition_of_done": [
+        "GET /patients/:id/gdpr/export → JSON/PDF de toutes données",
+        "PUT /patients/:id/gdpr/rectify → modifier champs autorisés",
+        "DELETE /patients/:id/gdpr/delete → anonymisation/archivage",
+        "Tests avec cas réels"
+      ]
+    },
+    {
+      "id": "TASK-10-01-01",
+      "title": "Initialisation projet (monorepo, toolchain)",
+      "use_case_id": "UC-10-01",
+      "description": "Setup Vite, React, TypeScript, Tailwind, testing, linting",
+      "story_points": "M",
+      "assignee_role": "Dev Lead",
+      "definition_of_done": [
+        "Projet démarre (`npm run dev`)",
+        "ESLint, Prettier, TypeScript strict",
+        "Jest + React Testing Library",
+        "Storybook pour composants"
+      ]
+    },
+    {
+      "id": "TASK-10-01-02",
+      "title": "Configuration React Router et state (Zustand/Redux)",
+      "use_case_id": "UC-10-01",
+      "description": "Routeur (dashboard, /analyse/:id, /analyse/:id/etape/:n) et state management",
+      "story_points": "S",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Routes définies et testées",
+        "Store Zustand/Redux avec actions (openAnalysis, goStep, complete)",
+        "État persisté (localStorage)"
+      ]
+    },
+    {
+      "id": "TASK-10-02-01",
+      "title": "Design system : tokens CSS et composants de base",
+      "use_case_id": "UC-10-02",
+      "description": "Implémenter couleurs, typo, espacements, ombres ; Button, Badge, Card, Input, Modal, etc.",
+      "story_points": "L",
+      "assignee_role": "Frontend Dev",
+      "definition_of_done": [
+        "Tokens CSS au root",
+        "10+ composants réutilisables",
+        "Storybook stories pour chacun",
+        "Tests unitaires pour composants critiques"
+      ]
+    },
+    {
+      "id": "TASK-10-03-01",
+      "title": "Planification intégrations (Maia, e-mail, IA, capteurs)",
+      "use_case_id": "UC-10-03",
+      "description": "Document/ADR détaillant comment chaque intégration sera réalisée (MVP vs V2)",
+      "story_points": "S",
+      "assignee_role": "Tech Architect",
+      "definition_of_done": [
+        "Document intégrations rédigé",
+        "MVP : Maia API/export, e-mail HDS, import fichier",
+        "V2 : API VALD, Vitruve, Stryd"
+      ]
+    }
+  ],
+  "github_labels": [
+    {
+      "name": "epic",
+      "color": "6f42c1",
+      "description": "Epic (grande fonctionnalité métier)"
+    },
+    {
+      "name": "use-case",
+      "color": "0075ca",
+      "description": "Use Case"
+    },
+    {
+      "name": "task",
+      "color": "cccccc",
+      "description": "Tâche"
+    },
+    {
+      "name": "must-have",
+      "color": "b60205",
+      "description": "Priorité Must Have (MVP)"
+    },
+    {
+      "name": "should-have",
+      "color": "fbca04",
+      "description": "Priorité Should Have"
+    },
+    {
+      "name": "backend",
+      "color": "1d76db",
+      "description": "Backend/API"
+    },
+    {
+      "name": "frontend",
+      "color": "0e8a16",
+      "description": "Frontend/UI"
+    },
+    {
+      "name": "infra",
+      "color": "d4c5f9",
+      "description": "Infrastructure/DevOps"
+    },
+    {
+      "name": "rgpd-hds",
+      "color": "ff69b4",
+      "description": "Conformité RGPD/HDS"
+    }
+  ],
+  "github_milestones": [
+    {
+      "title": "Phase 1 : Architecture & Design System",
+      "description": "Setup projet, stack tech, design system, modèle de données",
+      "epics": ["EPIC-10"]
+    },
+    {
+      "title": "Phase 2 : Phase amont & Questionnaire",
+      "description": "Accueil kiné, envoi questionnaire, Étape 1",
+      "epics": ["EPIC-01", "EPIC-02"]
+    },
+    {
+      "title": "Phase 3 : IA & Interview",
+      "description": "Étape 2 (profil IA), Étape 3 (interview + diagnostic)",
+      "epics": ["EPIC-03", "EPIC-04"]
+    },
+    {
+      "title": "Phase 4 : Tests & Données capteurs",
+      "description": "Étapes 4-7 (imports VALD, Vitruve, Stryd)",
+      "epics": ["EPIC-05"]
+    },
+    {
+      "title": "Phase 5 : Vidéo & Bilan",
+      "description": "Étape 8 (observation vidéo), Étape 9 (génération bilan)",
+      "epics": ["EPIC-06", "EPIC-07"]
+    },
+    {
+      "title": "Phase 6 : Dossier patient & Intégrations",
+      "description": "Dossier patient unique, navigation, intégrations finales",
+      "epics": ["EPIC-08"]
+    },
+    {
+      "title": "Phase 7 : Conformité & Sécurité",
+      "description": "RGPD, HDS, traçabilité, chiffrement",
+      "epics": ["EPIC-09"]
+    }
+  ],
+  "summary": {
+    "total_epics": 10,
+    "total_use_cases": 46,
+    "total_tasks": 73,
+    "total_story_points": "Épics: 10×L/M = ~60 points; Tasks: estimées ~120 points",
+    "next_step": "Collaboration avec Tech Architect pour valider faisabilité, identifier tech-tasks, et raffiner les user stories"
+  }
+}
